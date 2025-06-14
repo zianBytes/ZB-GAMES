@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Mohammed Zian Vhuyya">
+    <meta name="description" content="ZB Games - Your Portal to Amazing Games">
+    <title>ZB Games - Game Portal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="top-nav">
+        <div class="nav-left">
+            <div class="logo-container">
+                <button class="logo-button">
+                    <img src="assets/images/logo1.PNG" alt="ZB Games Logo" class="logo-img">
+                </button>
+                <div class="logo-dropdown">
+                    <div class="dropdown-content">
+                        <a href="#" class="dropdown-item">
+                            <span class="icon"></span>
+                            Home
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            <span class="icon"></span>
+                            My Games
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            <span class="icon"></span>
+                            Favorites
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <span class="icon"></span>
+                            Settings
+                        </a>
+                        <a href="#" class="dropdown-item">
+                            <span class="icon"></span>
+                            Help
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="nav-links">
+                <a href="#" class="nav-link">About Us</a>
+                <a href="#" class="nav-link">Contact Us</a>
+            </div>
+        </div>
+        <div class="nav-right">
+            <button id="onlineBtn" class="online-button">
+                <span class="online-dot"></span>
+                Online
+            </button>
+        </div>
+    </nav>
+
+    <section class="hero-banner">
+        <h1>Welcome to <span>ZB Games</span></h1>
+        <p>ngl I have 0 clue why I am building games.</p>
+    </section>
+
+    <div id="onlineModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Online Players</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="online-list">
+                <div class="online-player">
+                    <span class="player-avatar">👤</span>
+                    <span class="player-name">You</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main id="gamesSection" class="games-container">
+        <div class="games-grid">
+            <div class="game-card">
+                <div class="game-thumbnail">
+                    <img src="assets/images/toby-thumbnail.png" alt="Toby The Meowstronaut" class="thumbnail-img">
+                    <div class="game-overlay">
+                        <h3>Toby The Meowstronaut</h3>
+                        <button type="button" class="play-button" onclick="console.log('Play button clicked'); document.getElementById('gamesSection').style.display='none'; document.getElementById('gameSection').style.display='block'; initializeGame();">Play</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="game-card">
+                <div class="game-thumbnail">
+                    <img src="assets/images/ts-pmo-thumbnail.png" alt="TS PMO" class="thumbnail-img">
+                    <div class="game-overlay">
+                        <h3>TS PMO</h3>
+                        <div class="coming-soon-badge">Coming Soon</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <section id="gameSection" style="display: none;">
+        <div class="game-frame-container">
+            <div class="game-header">
+                <h2>Toby The Meowstronaut</h2>
+                <button type="button" class="back-button" onclick="document.getElementById('gameSection').style.display='none'; document.getElementById('gamesSection').style.display='block';">← Back to Games</button>
+            </div>
+            <div id="gameContainer" class="game-frame-wrapper">
+                <canvas id="gameCanvas"></canvas>
+            </div>
+        </div>
+    </section>
+
+    <script src="js/game.js"></script>
+</body>
+</html>
