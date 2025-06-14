@@ -1,0 +1,117 @@
+.about-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    color: var(--text-color);
+}
+
+.about-hero {
+    text-align: center;
+    margin-bottom: 4rem;
+    padding: 4rem 0;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.about-hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+.about-hero .subtitle {
+    font-size: 1.5rem;
+    color: var(--text-color);
+    opacity: 0.9;
+}
+
+.about-content {
+    display: grid;
+    gap: 3rem;
+}
+
+.about-section {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.about-section h2 {
+    color: var(--primary-color);
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+.about-section p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--text-color);
+    opacity: 0.9;
+}
+
+.features-list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+}
+
+.features-list li {
+    padding: 0.8rem 0;
+    font-size: 1.1rem;
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.features-list li::before {
+    content: "→";
+    color: var(--primary-color);
+    font-size: 1.2rem;
+}
+
+@media (max-width: 768px) {
+    .about-container {
+        padding: 1rem;
+    }
+
+    .about-hero {
+        padding: 2rem 0;
+        margin-bottom: 2rem;
+    }
+
+    .about-hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .about-hero .subtitle {
+        font-size: 1.2rem;
+    }
+
+    .about-section {
+        padding: 1.5rem;
+    }
+
+    .about-section h2 {
+        font-size: 1.5rem;
+    }
+
+    .features-list li {
+        font-size: 1rem;
+    }
+} 
