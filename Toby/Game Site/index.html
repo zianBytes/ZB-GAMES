@@ -5,13 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Mohammed Zian Vhuyya">
     <meta name="description" content="ZB Games - Your Portal to Amazing Games">
-    <title>ZB Games - Game Portal</title>
+    <title>ZianBytes Games</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="stylesheet" href="css/leaderboard.css">
 </head>
 <body>
+    <div id="authContainer" class="auth-container">
+        <div class="auth-box">
+            <h2 class="auth-title">WECOME TO ZB GAMES</h2>
+            <form id="loginForm" class="auth-form">
+                <input type="text" id="loginUsername" class="auth-input" placeholder="Username" required>
+                <input type="password" id="loginPassword" class="auth-input" placeholder="Password" required>
+                <button type="submit" class="auth-button">Login</button>
+            </form>
+            <div class="auth-links">
+                <a href="#" class="auth-link" id="showSignup">Create Account</a>
+                <a href="#" class="auth-link" id="forgotPassword">Forgot Password?</a>
+            </div>
+            <button id="guestButton" class="auth-button guest-button">Continue as Guest</button>
+        </div>
+
+        <div id="signupForm" class="auth-form" style="display: none;">
+            <h2 class="auth-title">Create Your Account</h2>
+            <input type="text" id="signupUsername" class="auth-input" placeholder="Choose a username" required>
+            <input type="password" id="signupPassword" class="auth-input" placeholder="Choose a password" required>
+            <input type="password" id="confirmPassword" class="auth-input" placeholder="Confirm password" required>
+            <button type="submit" class="auth-button">Sign Up</button>
+            <div class="auth-links">
+                <a href="#" class="auth-link" id="showLogin">Back to Login</a>
+            </div>
+        </div>
+    </div>
+
     <nav class="top-nav">
         <div class="nav-left">
             <div class="logo-container">
@@ -84,7 +113,7 @@
                     <img src="assets/images/toby-thumbnail.png" alt="Toby The Meowstronaut" class="thumbnail-img">
                     <div class="game-overlay">
                         <h3>Toby The Meowstronaut</h3>
-                        <button type="button" class="play-button" onclick="console.log('Play button clicked'); document.getElementById('gamesSection').style.display='none'; document.getElementById('gameSection').style.display='block'; initializeGame();">Play</button>
+                        <button type="button" class="play-button" onclick="startGame();">Play</button>
                     </div>
                 </div>
             </div>
@@ -101,18 +130,21 @@
         </div>
     </main>
 
-    <section id="gameSection" style="display: none;">
+    <div id="gameSection" style="display: none;">
         <div class="game-frame-container">
             <div class="game-header">
-                <h2>Toby The Meowstronaut</h2>
-                <button type="button" class="back-button" onclick="document.getElementById('gameSection').style.display='none'; document.getElementById('gamesSection').style.display='block';">← Back to Games</button>
+                <h2 class="game-title">Toby The Meowstronaut</h2>
+                <button class="back-button" onclick="returnToHome()">Back to Home</button>
             </div>
-            <div id="gameContainer" class="game-frame-wrapper">
-                <canvas id="gameCanvas"></canvas>
+            <div class="game-frame-wrapper">
+                <div id="gameContainer"></div>
             </div>
         </div>
-    </section>
+    </div>
 
+    <script src="js/auth.js"></script>
+    <script src="js/leaderboard.js"></script>
+    <script src="js/analytics.js"></script>
     <script src="js/game.js"></script>
 </body>
 </html>
