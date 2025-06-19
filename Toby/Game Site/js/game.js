@@ -9,7 +9,7 @@ function initializeGame() {
     }
 }
 
-function startGame() {
+window.startGame = function() {
     if (gameInitialized) return;
     
     // Track game start
@@ -93,7 +93,7 @@ function cleanupGame() {
     gameInitialized = false;
 }
 
-function returnToHome() {
+window.returnToHome = function() {
     cleanupGame();
     const gameSection = document.getElementById('gameSection');
     const gamesSection = document.getElementById('gamesSection');
@@ -112,7 +112,7 @@ function returnToHome() {
 document.addEventListener('DOMContentLoaded', () => {
     const backButton = document.querySelector('.back-button');
     if (backButton) {
-        backButton.onclick = returnToHome;
+        backButton.onclick = window.returnToHome;
     }
 });
 
