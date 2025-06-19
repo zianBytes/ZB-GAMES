@@ -89,7 +89,9 @@
 
     <div class="hero-banner">
         <h1>Welcome to Zb games</h1>
-        <p>I have no clue why I am building games.</p>
+        <p class="hero-tagline">Explore the Universe of Indie Games</p>
+        <p class="hero-subtitle">Blast off into new worlds, one game at a time.</p>
+        <button class="explore-btn" id="exploreBtn">Explore</button>
     </div>
 
     <div id="onlineModal" class="modal">
@@ -108,27 +110,42 @@
     </div>
 
     <main id="gamesSection" class="games-container">
-        <div class="games-grid">
-            <div class="game-card">
-                <div class="game-thumbnail">
-                    <img src="assets/images/toby-thumbnail.png" alt="Toby The Meowstronaut" class="thumbnail-img">
-                    <div class="game-overlay">
-                        <h3>Toby The Meowstronaut</h3>
-                        <button type="button" class="play-button" onclick="startGame();">Play</button>
+        <section class="storyboard-section">
+            <div class="timeline">
+                <!-- Node 1: Game left, story right -->
+                <div class="timeline-node left">
+                    <div class="timeline-content game-card">
+                        <div class="game-thumbnail">
+                            <img src="assets/images/toby-thumbnail.png" alt="Toby The Meowstronaut" class="thumbnail-img">
+                        </div>
+                        <div class="game-overlay">
+                            <h3>Toby The Meowstronaut</h3>
+                            <button type="button" class="play-button" onclick="startGame();">Play</button>
+                        </div>
+                    </div>
+                    <div class="timeline-content story">
+                        <h4>Meet Toby the Meowstronaut</h4>
+                        <p>Join Toby, the bravest cat in the cosmos, as he explores the unknown, dodges asteroids, and discovers new worlds. Your adventure begins here!</p>
+                    </div>
+                </div>
+                <!-- Node 2: Story left, game right -->
+                <div class="timeline-node right">
+                    <div class="timeline-content story">
+                        <h4>Coming Soon</h4>
+                        <p>Don't worry. This one will be bigger than all.</p>
+                    </div>
+                    <div class="timeline-content game-card">
+                        <div class="game-thumbnail">
+                            <img src="assets/images/ts-pmo-thumbnail.png" alt="TS PMO" class="thumbnail-img">
+                        </div>
+                        <div class="game-overlay">
+                            <h3>TS PMO</h3>
+                            <div class="coming-soon-badge">Coming Soon</div>
+                        </div>
                     </div>
                 </div>
             </div>
-
-            <div class="game-card">
-                <div class="game-thumbnail">
-                    <img src="assets/images/ts-pmo-thumbnail.png" alt="TS PMO" class="thumbnail-img">
-                    <div class="game-overlay">
-                        <h3>TS PMO</h3>
-                        <div class="coming-soon-badge">Coming Soon</div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        </section>
     </main>
 
     <div id="gameSection" style="display: none;">

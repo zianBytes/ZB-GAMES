@@ -166,4 +166,34 @@ document.addEventListener('DOMContentLoaded', function() {
             modal.style.display = "none";
         }
     });
+
+    // Smooth scroll for Explore button
+    var exploreBtn = document.getElementById('exploreBtn');
+    if (exploreBtn) {
+        exploreBtn.addEventListener('click', function() {
+            console.log('Explore button clicked');
+            var storyboard = document.querySelector('.storyboard-section');
+            if (storyboard && storyboard.scrollIntoView) {
+                storyboard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } else if (storyboard) {
+                var top = storyboard.getBoundingClientRect().top + window.scrollY;
+                window.scrollTo({ top: top, behavior: 'smooth' });
+            }
+        });
+    }
+
+    // Fade in storyboard when hero is out of view
+    function handleStoryboardFade() {
+        var hero = document.querySelector('.hero-banner');
+        var storyboard = document.querySelector('.storyboard-section');
+        if (!hero || !storyboard) return;
+        var heroRect = hero.getBoundingClientRect();
+        if (heroRect.bottom < 100) {
+            document.body.classList.add('scrolled');
+        } else {
+            document.body.classList.remove('scrolled');
+        }
+    }
+    window.addEventListener('scroll', handleStoryboardFade);
+    handleStoryboardFade();
 });
