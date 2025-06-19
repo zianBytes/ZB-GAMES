@@ -171,12 +171,12 @@ document.addEventListener('DOMContentLoaded', function() {
     var exploreBtn = document.getElementById('exploreBtn');
     if (exploreBtn) {
         exploreBtn.addEventListener('click', function() {
-            console.log('Explore button clicked');
-            var storyboard = document.querySelector('.storyboard-section');
-            if (storyboard && storyboard.scrollIntoView) {
-                storyboard.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            } else if (storyboard) {
-                var top = storyboard.getBoundingClientRect().top + window.scrollY;
+            console.log('Explore clicked!');
+            var timeline = document.querySelector('.storyboard-section');
+            if (timeline && timeline.scrollIntoView) {
+                timeline.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            } else if (timeline) {
+                var top = timeline.getBoundingClientRect().top + window.scrollY;
                 window.scrollTo({ top: top, behavior: 'smooth' });
             }
         });
