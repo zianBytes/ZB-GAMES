@@ -3,6 +3,9 @@ class AuthManager {
         this.users = JSON.parse(localStorage.getItem('gameUsers')) || {};
         this.currentUser = null;
         this.setupEventListeners();
+        // Show main content by default, only show auth when playing games
+        this.showGameSection();
+        this.hideAuthForms();
     }
 
     setupEventListeners() {
@@ -158,6 +161,7 @@ class AuthManager {
                 }
                 this.currentUser = name;
                 prompt.remove();
+                // Call startGame again now that user is authenticated
                 startGame();
             }
         });

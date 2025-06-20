@@ -4,13 +4,17 @@ let leaderboard;
 
 // Basic game setup
 function initializeGame() {
-    if (!gameInitialized) {
-        authManager.showGameEntryPrompt();
-    }
+    // Game initialization logic moved to startGame function
 }
 
 window.startGame = function() {
     if (gameInitialized) return;
+    
+    // Check if user needs to authenticate first
+    if (!authManager.currentUser) {
+        authManager.showGameEntryPrompt();
+        return;
+    }
     
     // Track game start
     analytics.trackGameStart('toby-meowstronaut');

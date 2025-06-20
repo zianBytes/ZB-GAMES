@@ -8,7 +8,7 @@
     <title>ZB GAMES</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik+Mono+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/auth.css">
     <link rel="stylesheet" href="css/leaderboard.css">
@@ -45,7 +45,7 @@
         <div class="nav-left">
             <div class="logo-container">
                 <button class="logo-button">
-                    <img src="assets/images/green.png" alt="ZB Games Logo" class="logo-img">
+                    <img src="assets/images/newgreen.png" alt="ZB Games Logo" class="logo-img">
                 </button>
                 <div class="logo-dropdown">
                     <div class="dropdown-content">
@@ -88,10 +88,68 @@
     </nav>
 
     <div class="hero-banner">
-        <h1>Welcome to Zb games</h1>
-        <p class="hero-tagline">Explore the Universe of Indie Games</p>
-        <p class="hero-subtitle">Blast off into new worlds, one game at a time.</p>
-        <button class="explore-btn" id="exploreBtn">Explore</button>
+        <!-- Installation machinery -->
+        <div class="installation-system">
+            <div class="robotic-arm" id="roboticArm">
+                <div class="arm-segment arm-base"></div>
+                <div class="arm-segment arm-joint"></div>
+                <div class="arm-segment arm-end"></div>
+                <div class="installation-claw"></div>
+            </div>
+            <div class="installation-progress">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <div class="installation-status" id="installStatus">INITIALIZING LETTER INSTALLATION...</div>
+            </div>
+        </div>
+
+        <!-- Enhanced particle systems -->
+        <div class="space-particles" id="spaceParticles"></div>
+        <div class="installation-sparks" id="installationSparks"></div>
+        
+        <div class="spring-letters" aria-label="ZB GAMES" role="heading" tabindex="0">
+            <div class="spring-letter-container" data-letter-index="0">
+                <div class="installation-anchor"></div>
+                <svg class="spring-string" width="8" height="240" viewBox="0 0 8 240" style="--string-index: 0;"><path d="M4 0 Q6 30 4 60 Q2 90 4 120 Q6 150 4 180 Q2 210 4 240" stroke="#2c3e50" stroke-width="4" fill="none"/></svg>
+                <span class="spring-letter installing" data-letter="Z" style="--letter-index: 0;">Z</span>
+            </div>
+            <div class="spring-letter-container" data-letter-index="1">
+                <div class="installation-anchor"></div>
+                <svg class="spring-string" width="8" height="240" viewBox="0 0 8 240" style="--string-index: 1;"><path d="M4 0 Q6 30 4 60 Q2 90 4 120 Q6 150 4 180 Q2 210 4 240" stroke="#2c3e50" stroke-width="4" fill="none"/></svg>
+                <span class="spring-letter installing" data-letter="B" style="--letter-index: 1;">B</span>
+            </div>
+            <div class="spring-letter-container" data-letter-index="2">
+                <div class="installation-anchor"></div>
+                <svg class="spring-string" width="8" height="240" viewBox="0 0 8 240" style="--string-index: 2;"><path d="M4 0 Q6 30 4 60 Q2 90 4 120 Q6 150 4 180 Q2 210 4 240" stroke="#2c3e50" stroke-width="4" fill="none"/></svg>
+                <span class="spring-letter installing" data-letter="G" style="--letter-index: 2;">G</span>
+            </div>
+            <div class="spring-letter-container" data-letter-index="3">
+                <div class="installation-anchor"></div>
+                <svg class="spring-string" width="8" height="240" viewBox="0 0 8 240" style="--string-index: 3;"><path d="M4 0 Q6 30 4 60 Q2 90 4 120 Q6 150 4 180 Q2 210 4 240" stroke="#2c3e50" stroke-width="4" fill="none"/></svg>
+                <span class="spring-letter installing" data-letter="A" style="--letter-index: 3;">A</span>
+            </div>
+            <div class="spring-letter-container" data-letter-index="4">
+                <div class="installation-anchor"></div>
+                <svg class="spring-string" width="8" height="240" viewBox="0 0 8 240" style="--string-index: 4;"><path d="M4 0 Q6 30 4 60 Q2 90 4 120 Q6 150 4 180 Q2 210 4 240" stroke="#2c3e50" stroke-width="4" fill="none"/></svg>
+                <span class="spring-letter installing" data-letter="M" style="--letter-index: 4;">M</span>
+            </div>
+            <div class="spring-letter-container" data-letter-index="5">
+                <div class="installation-anchor"></div>
+                <svg class="spring-string" width="8" height="240" viewBox="0 0 8 240" style="--string-index: 5;"><path d="M4 0 Q6 30 4 60 Q2 90 4 120 Q6 150 4 180 Q2 210 4 240" stroke="#2c3e50" stroke-width="4" fill="none"/></svg>
+                <span class="spring-letter installing" data-letter="E" style="--letter-index: 5;">E</span>
+            </div>
+            <div class="spring-letter-container" data-letter-index="6">
+                <div class="installation-anchor"></div>
+                <svg class="spring-string" width="8" height="240" viewBox="0 0 8 240" style="--string-index: 6;"><path d="M4 0 Q6 30 4 60 Q2 90 4 120 Q6 150 4 180 Q2 210 4 240" stroke="#2c3e50" stroke-width="4" fill="none"/></svg>
+                <span class="spring-letter installing" data-letter="S" style="--letter-index: 6;">S</span>
+            </div>
+        </div>
+        
+       
+        <button class="explore-btn" id="exploreBtn" data-sound="space-blip">Explore</button>
+        <button class="mute-btn" id="muteBtn" aria-label="Mute/Unmute sound"><span id="muteIcon">🔊</span></button>
+        <div id="particle-container"></div>
     </div>
 
     <div id="onlineModal" class="modal">
@@ -116,7 +174,7 @@
                 <div class="timeline-node left">
                     <div class="timeline-content game-card">
                         <div class="game-thumbnail">
-                            <img src="assets/images/toby-thumbnail.png" alt="Toby The Meowstronaut" class="thumbnail-img">
+                            <img src="assets/images/finaltoby.png" alt="Toby The Meowstronaut" class="thumbnail-img">
                         </div>
                         <div class="game-overlay">
                             <h3>Toby The Meowstronaut</h3>
