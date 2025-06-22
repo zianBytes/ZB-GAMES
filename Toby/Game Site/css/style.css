@@ -3651,9 +3651,9 @@ html {
 /* Speech bubble positioning */
 .speech-bubble {
     position: fixed;
-    left: 60%;
+    left: 50%;
     top: 130px;
-    transform: translateX(200px);
+    transform: translateX(400px);
     transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     
     /* Subtle dark background */
@@ -3690,123 +3690,46 @@ html {
 
 /* When mascot moves left */
 .speech-bubble.positioned-left {
+    left: calc(1rem + 350px);
     transform: translateX(250px);
-    left: calc(1rem + 300px);
 }
 
-/* Speech Bubble Tail/Pointer */
-.speech-tail {
-    position: absolute;
-    left: -12px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 0;
-    height: 0;
-    border-top: 15px solid transparent;
-    border-bottom: 15px solid transparent;
-    border-right: 15px solid rgba(0, 255, 255, 0.6);
-    filter: drop-shadow(-2px 0 4px rgba(0, 255, 255, 0.3));
-}
-
-/* Text animations */
-@keyframes typing {
-    from { width: 0; }
-    to { width: 100%; }
-}
-
-@keyframes deleteText {
-    from { 
-        width: 100%;
-        opacity: 1;
-    }
-    to { 
-        width: 0;
-        opacity: 0;
+@media (max-width: 1600px) {
+    .speech-bubble.positioned-left {
+        transform: translateX(200px);
     }
 }
 
-.speech-content {
-    white-space: nowrap;
-    overflow: hidden;
-    border-right: 2px solid transparent;
-    width: 0;
-}
-
-.speech-content.typing {
-    animation: typing 0.3s steps(40, end) forwards;
-    border-right: 2px solid var(--primary-color);
-}
-
-.speech-content.deleting {
-    animation: deleteText 0.3s steps(40, end) forwards;
-    border-right: 2px solid var(--primary-color);
-    width: 100%;
-}
-
-/* Ensure the mascot is clickable */
-.mascot {
-    cursor: pointer;
-    user-select: none;
-}
-
-/* Mobile responsiveness */
-/* Responsive speech bubble positioning */
 @media (max-width: 1400px) {
     .speech-bubble.positioned-left {
         transform: translateX(150px);
-        left: calc(1rem + 350px);
     }
 }
 
-@media (max-width: 1200px) {
-    .speech-bubble.positioned-left {
-        transform: translateX(100px);
-        left: calc(1rem + 400px);
-    }
-}
-
-@media (max-width: 992px) {
-    .speech-bubble.positioned-left {
-        transform: translateX(50px);
-        left: calc(1rem + 450px);
-    }
-}
-
+/* Mobile responsiveness */
 @media (max-width: 768px) {
     .speech-bubble {
         top: 40px;
-        transform: translateX(150px);
         min-width: 160px;
         max-width: 220px;
         padding: 0.8rem 1.2rem;
     }
     
-    .speech-bubble.show {
-        transform: translateX(150px) scale(1);
-    }
-    
     .speech-bubble.positioned-left {
-        transform: translateX(0);
-        left: calc(1rem + 500px);
+        left: calc(1rem + 400px);
     }
 }
 
 @media (max-width: 480px) {
     .speech-bubble {
         top: 30px;
-        transform: translateX(100px);
         min-width: 140px;
         max-width: 180px;
         padding: 0.7rem 1rem;
     }
     
-    .speech-bubble.show {
-        transform: translateX(100px) scale(1);
-    }
-    
     .speech-bubble.positioned-left {
-        transform: translateX(-50px);
-        left: calc(1rem + 550px);
+        left: calc(1rem + 350px);
     }
 }
 
@@ -3841,7 +3764,7 @@ html {
 }
 
 .mascot-container.positioned-left {
-    left: calc(1rem + 300px);
+    left: calc(1rem + 250px);
     transform: translate(-50%, -50%);
 }
 
@@ -4203,4 +4126,59 @@ html {
     .system-status {
         align-items: center;
     }
+}
+
+/* Speech Bubble Tail/Pointer */
+.speech-tail {
+    position: absolute;
+    left: -12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-top: 15px solid transparent;
+    border-bottom: 15px solid transparent;
+    border-right: 15px solid rgba(0, 255, 255, 0.6);
+    filter: drop-shadow(-2px 0 4px rgba(0, 255, 255, 0.3));
+}
+
+/* Text animations */
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+@keyframes deleteText {
+    from { 
+        width: 100%;
+        opacity: 1;
+    }
+    to { 
+        width: 0;
+        opacity: 0;
+    }
+}
+
+.speech-content {
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 2px solid transparent;
+    width: 0;
+}
+
+.speech-content.typing {
+    animation: typing 0.3s steps(40, end) forwards;
+    border-right: 2px solid var(--primary-color);
+}
+
+.speech-content.deleting {
+    animation: deleteText 0.3s steps(40, end) forwards;
+    border-right: 2px solid var(--primary-color);
+    width: 100%;
+}
+
+/* Ensure the mascot is clickable */
+.mascot {
+    cursor: pointer;
+    user-select: none;
 }
