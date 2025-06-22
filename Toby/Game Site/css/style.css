@@ -3690,7 +3690,7 @@ html {
 
 /* When mascot moves left */
 .speech-bubble.positioned-left {
-    transform: translateX(100px);
+    transform: translateX(250px);
     left: calc(1rem + 300px);
 }
 
