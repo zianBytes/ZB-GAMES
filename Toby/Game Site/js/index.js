@@ -23,13 +23,13 @@ function checkElements() {
                 });
             });
         } else {
-            console.log(`${name}:`, element ? 'Found' : 'Not Found');
-            if (element) {
-                console.log(`${name} styles:`, {
+        console.log(`${name}:`, element ? 'Found' : 'Not Found');
+        if (element) {
+            console.log(`${name} styles:`, {
                     display: getComputedStyle(element).display,
                     visibility: getComputedStyle(element).visibility,
                     opacity: getComputedStyle(element).opacity
-                });
+            });
             }
         }
     });
@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function() {
     ensureGamesVisible();
     
     // Start cinematic installation sequence
-    startCinematicInstallation();
+    // startCinematicInstallation(); // Commented out - no longer needed without letters
 
     // Logo dropdown functionality
     const logoButton = document.querySelector('.logo-button');
@@ -162,17 +162,17 @@ document.addEventListener('DOMContentLoaded', function() {
             // Small delay to ensure visibility
             setTimeout(() => {
                 // Scroll to games section
-                var timeline = document.querySelector('.storyboard-section');
-                if (timeline && timeline.scrollIntoView) {
-                    timeline.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            var timeline = document.querySelector('.storyboard-section');
+            if (timeline && timeline.scrollIntoView) {
+                timeline.scrollIntoView({ behavior: 'smooth', block: 'start' });
                     console.log('Scrolling to timeline');
-                } else if (timeline) {
-                    var top = timeline.getBoundingClientRect().top + window.scrollY;
-                    window.scrollTo({ top: top, behavior: 'smooth' });
+            } else if (timeline) {
+                var top = timeline.getBoundingClientRect().top + window.scrollY;
+                window.scrollTo({ top: top, behavior: 'smooth' });
                     console.log('Scrolling to timeline (fallback)');
                 } else {
                     console.log('Timeline not found');
-                }
+            }
             }, 100);
         });
     } else {
@@ -194,18 +194,18 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('scroll', handleStoryboardFade);
     handleStoryboardFade();
 
-    // --- SPRINGY LETTERS, PARTICLES, AND SOUND ---
-    const springLetters = document.querySelectorAll('.spring-letter');
+    // --- PARTICLES AND SOUND (LETTERS REMOVED) ---
+    // const floatingLetters = document.querySelectorAll('.floating-letter'); // Commented out - no letters
     const particleContainer = document.getElementById('particle-container');
     const muteBtn = document.getElementById('muteBtn');
     const muteIcon = document.getElementById('muteIcon');
     
     // Make these global for installation sequence
     window.isMuted = false;
-    window.installationSounds = {
-        mechanical: new Audio('assets/sounds/space-blip.mp3'),
-        complete: new Audio('assets/sounds/boing.mp3')
-    };
+    // window.installationSounds = { // Commented out - no installation system
+    //     mechanical: new Audio('assets/sounds/space-blip.mp3'),
+    //     complete: new Audio('assets/sounds/boing.mp3')
+    // };
 
     // Load sounds
     const bounceSound = new Audio('assets/sounds/boing.mp3');
@@ -253,165 +253,134 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Enhanced Wind System
-    let windDirection = 0;
-    let windStrength = 0;
+    // Enhanced Wind System - COMMENTED OUT (no letters)
+    // let windDirection = 0;
+    // let windStrength = 0;
     
-    function updateWind() {
-        windDirection += (Math.random() - 0.5) * 0.1;
-        windStrength = Math.sin(Date.now() * 0.001) * 0.5 + 0.5;
+    // function updateWind() {
+    //     windDirection += (Math.random() - 0.5) * 0.1;
+    //     windStrength = Math.sin(Date.now() * 0.001) * 0.5 + 0.5;
         
-        // Apply wind to all letters
-        springLetters.forEach((letter, index) => {
-            const windForce = Math.sin(Date.now() * 0.002 + index * 0.5) * windStrength * 3;
-            const container = letter.parentElement;
-            container.style.transform = `translateX(${windForce}px) rotate(${windForce * 0.2}deg)`;
-        });
-    }
+    //     // Apply gentle wind to floating letters
+    //     floatingLetters.forEach((letter, index) => {
+    //         const windForce = Math.sin(Date.now() * 0.002 + index * 0.5) * windStrength * 2;
+    //         if (letter.style) {
+    //             letter.style.transform = `translateX(${windForce}px) rotate(${windForce * 0.1}deg)`;
+    //         }
+    //     });
+    // }
     
-    // Update wind every frame
-    setInterval(updateWind, 50);
+    // // Update wind every frame
+    // setInterval(updateWind, 50);
 
-    // Enhanced Spring physics for each letter
-    springLetters.forEach((letter, index) => {
-        let isDragging = false, startY = 0, lastY = 0, velocity = 0, animFrame;
-        let restY = 0, y = 0, rotation = 0, rotationVelocity = 0;
-        const color = getComputedStyle(letter).color;
+    // Clean floating physics for each letter - COMMENTED OUT (no letters)
+    // floatingLetters.forEach((letter, index) => {
+    //     let isDragging = false, startY = 0, lastY = 0, velocity = 0, animFrame;
+    //     let restY = 0, y = 0, rotation = 0, rotationVelocity = 0;
         
-        // Add interactive glow effect
-        letter.addEventListener('mouseenter', () => {
-            letter.style.filter = `
-                drop-shadow(4px 8px 12px rgba(0, 0, 0, 0.4))
-                drop-shadow(0 0 30px rgba(52, 152, 219, 0.8))
-                drop-shadow(0 0 40px rgba(26, 188, 156, 0.6))
-            `;
-        });
+    //     // Add enhanced hover effect that complements ambient lighting
+    //     letter.addEventListener('mouseenter', () => {
+    //         letter.style.filter = `
+    //             drop-shadow(0 8px 20px rgba(0, 0, 0, 0.2))
+    //             drop-shadow(0 0 30px rgba(52, 152, 219, 0.3))
+    //             drop-shadow(0 0 60px rgba(52, 152, 219, 0.2))
+    //         `;
+    //     });
         
-        letter.addEventListener('mouseleave', () => {
-            letter.style.filter = `
-                drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.3))
-                drop-shadow(0 0 20px rgba(52, 152, 219, 0.4))
-            `;
-        });
-        function setY(val) {
-            y = val;
-            rotation += rotationVelocity;
-            letter.style.transform = `translateY(${y}px) rotate(${rotation}deg)`;
-            const string = letter.parentElement.querySelector('.spring-string path');
-            if (string) {
-                // Realistic long string physics with proper curves
-                const stretch = y * 0.6;
-                const segments = 8; // More segments for smoother curve
-                const points = [];
-                
-                // Create realistic pendulum curve
-                for (let i = 0; i <= segments; i++) {
-                    const t = i / segments;
-                    const baseY = t * (240 + stretch);
-                    const swayX = 4 + Math.sin(t * Math.PI * 2) * (stretch * 0.02);
-                    points.push(`${i === 0 ? 'M' : 'L'}${swayX} ${baseY}`);
-                }
-                
-                string.setAttribute('d', points.join(' '));
-                
-                // Enhanced tension-based color changes
-                const tension = Math.min(1, Math.abs(y) / 120);
-                const red = Math.floor(44 + tension * 100);
-                const green = Math.floor(62 + tension * 60);
-                const blue = Math.floor(80 + tension * 40);
-                string.setAttribute('stroke', `rgb(${red}, ${green}, ${blue})`);
-                
-                // Add string glow for high tension
-                if (tension > 0.5) {
-                    string.setAttribute('filter', `drop-shadow(0 0 ${tension * 8}px rgb(${red}, ${green}, ${blue}))`);
-                } else {
-                    string.setAttribute('filter', 'drop-shadow(1px 2px 3px rgba(44, 62, 80, 0.8))');
-                }
-            }
-        }
-        function animateSpring() {
-            // Enhanced spring physics
-            velocity += (restY - y) * 0.22;
-            velocity *= 0.82;
+    //     letter.addEventListener('mouseleave', () => {
+    //         letter.style.filter = `
+    //             drop-shadow(0 4px 12px rgba(0, 0, 0, 0.1))
+    //         `;
+    //     });
+    //     function setY(val) {
+    //         y = val;
+    //         rotation += rotationVelocity;
+    //         letter.style.transform = `translateY(${y}px) rotate(${rotation}deg)`;
+    //     }
+    //     function animateFloat() {
+    //         // Clean floating physics
+    //         velocity += (restY - y) * 0.18;
+    //         velocity *= 0.88;
             
-            // Add rotation physics
-            rotationVelocity += (0 - rotation) * 0.15;
-            rotationVelocity *= 0.85;
+    //         // Add gentle rotation physics
+    //         rotationVelocity += (0 - rotation) * 0.12;
+    //         rotationVelocity *= 0.90;
             
-            setY(y + velocity);
+    //         setY(y + velocity);
             
-            // Chain reaction - influence nearby letters
-            if (Math.abs(velocity) > 5) {
-                springLetters.forEach((otherLetter, otherIndex) => {
-                    if (otherLetter !== letter && Math.abs(otherIndex - index) <= 1) {
-                        const influence = velocity * 0.3;
-                        const otherContainer = otherLetter.parentElement;
-                        otherContainer.style.transform += ` translateY(${influence}px)`;
-                    }
-                });
-            }
+    //         // Gentle chain reaction - influence nearby letters
+    //         if (Math.abs(velocity) > 3) {
+    //             floatingLetters.forEach((otherLetter, otherIndex) => {
+    //                 if (otherLetter !== letter && Math.abs(otherIndex - index) <= 1) {
+    //                     const influence = velocity * 0.2;
+    //                     if (otherLetter.style) {
+    //                         otherLetter.style.transform += ` translateY(${influence}px)`;
+    //                     }
+    //                 }
+    //             });
+    //         }
             
-            if (Math.abs(velocity) > 0.5 || Math.abs(y - restY) > 0.5 || Math.abs(rotationVelocity) > 0.1) {
-                animFrame = requestAnimationFrame(animateSpring);
-            } else {
-                setY(restY);
-                velocity = 0;
-                rotation = 0;
-                rotationVelocity = 0;
-                animFrame = null;
-            }
-        }
-        function bounce(e, force = 1) {
-            playSound(bounceSound);
-            const rect = letter.getBoundingClientRect();
+    //         if (Math.abs(velocity) > 0.3 || Math.abs(y - restY) > 0.3 || Math.abs(rotationVelocity) > 0.1) {
+    //             animFrame = requestAnimationFrame(animateFloat);
+    //         } else {
+    //             setY(restY);
+    //             velocity = 0;
+    //             rotation = 0;
+    //             rotationVelocity = 0;
+    //             animFrame = null;
+    //         }
+    //     }
+    //     function bounce(e, force = 1) {
+    //         playSound(bounceSound);
+    //         const rect = letter.getBoundingClientRect();
             
-            // Enhanced particle effects
-            const particleColors = ['#3498db', '#2980b9', '#1abc9c', '#16a085', '#f39c12'];
-            emitParticles(rect.left + rect.width/2, rect.top + rect.height/2, particleColors[index % particleColors.length]);
+    //         // Clean particle effects that complement ambient lighting
+    //         const particleColors = ['#3498db', '#52a3db', '#1abc9c', '#16a085', '#3498db'];
+    //         emitParticles(rect.left + rect.width/2, rect.top + rect.height/2, particleColors[index % particleColors.length]);
             
-            // Add extra sparkle particles for bigger bounces
-            if (force > 1) {
-                setTimeout(() => {
-                    emitParticles(rect.left + rect.width/2, rect.top + rect.height/2, '#f1c40f');
-                }, 100);
-            }
+    //         // Add extra sparkle particles for bigger bounces
+    //         if (force > 1) {
+    //             setTimeout(() => {
+    //                 emitParticles(rect.left + rect.width/2, rect.top + rect.height/2, '#52a3db');
+    //             }, 100);
+    //         }
             
-            velocity = 18 * force;
-            rotationVelocity = (Math.random() - 0.5) * 10 * force;
+    //         velocity = 12 * force; // Gentler bounce
+    //         rotationVelocity = (Math.random() - 0.5) * 6 * force; // Less rotation
             
-            // Screen shake for big bounces
-            if (force > 1.2) {
-                document.body.style.animation = 'screenShake 0.3s ease-in-out';
-                setTimeout(() => {
-                    document.body.style.animation = '';
-                }, 300);
-            }
+    //         // Gentle screen shake for big bounces
+    //         if (force > 1.2) {
+    //             document.body.style.animation = 'screenShake 0.2s ease-in-out';
+    //             setTimeout(() => {
+    //                 document.body.style.animation = '';
+    //             }, 200);
+    //         }
             
-            if (!animFrame) animateSpring();
-        }
-        // Mouse/touch drag
-        function onPointerDown(e) {
-            isDragging = true;
-            startY = (e.touches ? e.touches[0].clientY : e.clientY) - y;
-            document.addEventListener(e.type === 'touchstart' ? 'touchmove' : 'mousemove', onPointerMove);
-            document.addEventListener(e.type === 'touchstart' ? 'touchend' : 'mouseup', onPointerUp);
-        }
-        function onPointerMove(e) {
-            if (!isDragging) return;
-            lastY = (e.touches ? e.touches[0].clientY : e.clientY) - startY;
-            setY(Math.max(0, lastY));
-        }
-        function onPointerUp(e) {
-            isDragging = false;
-            bounce(e, Math.min(1.5, Math.abs(y/60)));
-            document.removeEventListener(e.type === 'touchend' ? 'touchmove' : 'mousemove', onPointerMove);
-            document.removeEventListener(e.type === 'touchend' ? 'touchend' : 'mouseup', onPointerUp);
-        }
-        letter.addEventListener('mousedown', onPointerDown);
-        letter.addEventListener('touchstart', onPointerDown, { passive: false });
-        letter.addEventListener('click', e => bounce(e, 1));
-        letter.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') bounce(e, 1); });
-    });
+    //         if (!animFrame) animateFloat();
+    //     }
+    //     // Mouse/touch drag
+    //     function onPointerDown(e) {
+    //         isDragging = true;
+    //         startY = (e.touches ? e.touches[0].clientY : e.clientY) - y;
+    //         document.addEventListener(e.type === 'touchstart' ? 'touchmove' : 'mousemove', onPointerMove);
+    //         document.addEventListener(e.type === 'touchstart' ? 'touchend' : 'mouseup', onPointerUp);
+    //     }
+    //     function onPointerMove(e) {
+    //         if (!isDragging) return;
+    //         lastY = (e.touches ? e.touches[0].clientY : e.clientY) - startY;
+    //         setY(Math.max(0, lastY));
+    //     }
+    //     function onPointerUp(e) {
+    //         isDragging = false;
+    //         bounce(e, Math.min(1.5, Math.abs(y/60)));
+    //         document.removeEventListener(e.type === 'touchend' ? 'touchmove' : 'mousemove', onPointerMove);
+    //         document.removeEventListener(e.type === 'touchend' ? 'touchend' : 'mouseup', onPointerUp);
+    //     }
+    //     letter.addEventListener('mousedown', onPointerDown);
+    //     letter.addEventListener('touchstart', onPointerDown, { passive: false });
+    //     letter.addEventListener('click', e => bounce(e, 1));
+    //     letter.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') bounce(e, 1); });
+    // });
 
     // Explore button sound is now handled above with scroll functionality
 
@@ -431,318 +400,263 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // ============================================
-// 🎬 CINEMATIC INSTALLATION SYSTEM
+// 🎬 SIMPLE CLEANUP SYSTEM
 // ============================================
 
-function startCinematicInstallation() {
-    const installationSystem = document.querySelector('.installation-system');
-    const progressFill = document.getElementById('progressFill');
-    const installStatus = document.getElementById('installStatus');
-    const letters = document.querySelectorAll('.spring-letter');
-    
-    // Set installing state
-    document.body.classList.add('installing');
-    
-    // Installation sequence phases
-    const phases = [
-        { progress: 15, status: "INITIALIZING INSTALLATION MATRIX...", duration: 800 },
-        { progress: 30, status: "CALIBRATING ROBOTIC SYSTEMS...", duration: 600 },
-        { progress: 45, status: "SCANNING LETTER POSITIONS...", duration: 700 },
-        { progress: 60, status: "DEPLOYING INSTALLATION ANCHORS...", duration: 900 },
-        { progress: 80, status: "INSTALLING LETTERS Z-B-G-A-M-E-S...", duration: 2800 },
-        { progress: 95, status: "TESTING PHYSICS SYSTEMS...", duration: 600 },
-        { progress: 100, status: "INSTALLATION COMPLETE!", duration: 500 }
-    ];
-    
-    let currentPhase = 0;
-    
-    // Create space particles
-    createSpaceParticles();
-    
-    function nextPhase() {
-        if (currentPhase >= phases.length) {
-            completeInstallation();
+// function startCinematicInstallation() { // COMMENTED OUT - no letters/installation
+//     // Clean and simple - just remove any installation-related elements
+//     setTimeout(() => {
+//         const installationSystem = document.querySelector('.installation-system');
+//         if (installationSystem) {
+//             installationSystem.remove();
+//         }
+        
+//         // Ensure floating letters are visible and interactive
+//         const floatingLetters = document.querySelectorAll('.floating-letter');
+//         floatingLetters.forEach(letter => {
+//             letter.style.opacity = '1';
+//             letter.style.visibility = 'visible';
+//         });
+        
+//         // Ensure games are visible
+//         ensureGamesVisible();
+//     }, 500);
+// }
+
+// ============================================
+// 🤖 MASCOT ANIMATION CONTROLLER
+// ============================================
+
+class MascotAnimationController {
+    constructor() {
+        console.log('🤖 MascotController: Constructor called');
+        this.mascotContainer = document.getElementById('mascotContainer');
+        this.mascot = document.getElementById('mascot');
+        this.speechBubble = document.getElementById('speechBubble');
+        this.speechContent = document.getElementById('speechContent');
+        
+        // Log if elements are found
+        console.log('🤖 MascotController: Elements found:', {
+            container: !!this.mascotContainer,
+            mascot: !!this.mascot,
+            speechBubble: !!this.speechBubble,
+            speechContent: !!this.speechContent
+        });
+
+        this.animationStarted = false;
+        this.timeouts = [];
+        this.clickCount = 0;
+        this.lastClickTime = 0;
+        this.clickMessages = [
+            "DO NOT TOUCH ME",
+            "What is wrong with you?",
+            "Ik I'm hot but damn",
+            "Sybau"
+        ];
+        this.setupMascotInteraction();
+    }
+
+    setupMascotInteraction() {
+        if (this.mascot) {
+            this.mascot.addEventListener('click', () => this.handleMascotClick());
+        }
+    }
+
+    handleMascotClick() {
+        const currentTime = Date.now();
+        
+        // Reset click sequence if it's been more than 5 seconds since last click
+        if (currentTime - this.lastClickTime > 5000) {
+            this.clickCount = 0;
+            this.showSpeechWithDelete("I'm glad you chose peace", -1);
+        } else {
+            // Cycle through click messages
+            const messageIndex = this.clickCount % this.clickMessages.length;
+            this.showSpeechWithDelete(this.clickMessages[messageIndex], -1);
+            this.clickCount++;
+        }
+        
+        this.lastClickTime = currentTime;
+    }
+
+    init() {
+        // Only run animation once when page loads
+        if (!this.animationStarted) {
+            this.startIntroSequence();
+            this.animationStarted = true;
+        }
+    }
+
+    startIntroSequence() {
+        console.log('🤖 Starting intro sequence...');
+        
+        // Ensure mascot starts at center
+        this.resetMascotPosition();
+        
+        // Immediately: Show first speech for 5 seconds
+        this.showSpeech("Oh who is you?", 5000);
+
+        // At 5 seconds: Move mascot to left
+        console.log('🤖 Scheduling move to left in 5 seconds...');
+        this.timeouts.push(setTimeout(() => {
+            console.log('🤖 5 seconds elapsed, moving mascot...');
+            this.moveMascotToLeft();
+        }, 5000));
+
+        // At 7 seconds: Show introduction speech
+        this.timeouts.push(setTimeout(() => {
+            console.log('🤖 Showing: Hi I\'m Morich');
+            this.showSpeechWithDelete("Hi I'm Morich", 3000);
+        }, 7000));
+
+        // At 10 seconds: Change to welcome message
+        this.timeouts.push(setTimeout(() => {
+            console.log('🤖 Showing: Umm Welcome ig');
+            this.showSpeechWithDelete("Umm Welcome ig", -1);
+        }, 10000));
+    }
+
+    showSpeechWithDelete(message, duration = -1) {
+        // First, add the deleting animation to current text
+        this.speechContent.classList.add('deleting');
+        
+        // After deletion animation, show new text
+        setTimeout(() => {
+            this.showSpeech(message, duration);
+        }, 500); // Match this with the CSS animation duration
+    }
+
+    showSpeech(message, duration = -1) {
+        console.log('🤖 showSpeech called with:', message);
+        
+        // Force hide first, then show after a tiny delay
+        this.speechBubble.classList.remove('show');
+        this.speechContent.classList.remove('typing', 'deleting');
+        
+        setTimeout(() => {
+            // Clear any existing content
+            this.speechContent.textContent = '';
+            
+            // Set new message
+            this.speechContent.textContent = message;
+            
+            // Show speech bubble with animation
+            this.speechBubble.classList.add('show');
+            
+            // Add typing effect
+            this.speechContent.classList.add('typing');
+            
+            console.log('🤖 Speech bubble should now be visible with:', message);
+        }, 100);
+        
+        // Hide after duration if specified
+        if (duration > 0) {
+            this.timeouts.push(setTimeout(() => {
+                this.hideSpeech();
+            }, duration + 100));
+        }
+    }
+
+    hideSpeech() {
+        this.speechBubble.classList.remove('show');
+        this.speechContent.classList.remove('typing', 'deleting');
+    }
+
+    moveMascotToLeft() {
+        console.log('🤖 Moving mascot to left position...');
+        
+        if (!this.mascotContainer) {
+            console.error('🤖 Error: mascotContainer not found!');
             return;
         }
         
-        const phase = phases[currentPhase];
-        progressFill.style.width = phase.progress + '%';
-        installStatus.textContent = phase.status;
+        // Hide current speech first
+        this.hideSpeech();
         
-        // Create installation sparks during key phases
-        if (phase.progress >= 60 && phase.progress <= 80) {
-            createInstallationSparks();
-            // Play mechanical sound
-            if (!window.isMuted) {
-                const mechanicalSound = window.installationSounds.mechanical.cloneNode();
-                mechanicalSound.playbackRate = 0.8;
-                mechanicalSound.volume = 0.3;
-                mechanicalSound.play();
-            }
+        // Move mascot to left position
+        this.mascotContainer.classList.add('positioned-left');
+        console.log('🤖 Added positioned-left class to container');
+        
+        // Update speech bubble position
+        if (this.speechBubble) {
+            this.speechBubble.classList.add('positioned-left');
+            console.log('🤖 Added positioned-left class to speech bubble');
         }
-        
-        // Trigger letter installations
-        if (phase.progress === 80) {
-            triggerLetterInstallations();
-        }
-        
-        // Play completion sound
-        if (phase.progress === 100) {
-            if (!window.isMuted) {
-                const completeSound = window.installationSounds.complete.cloneNode();
-                completeSound.playbackRate = 1.2;
-                completeSound.volume = 0.6;
-                setTimeout(() => completeSound.play(), 500);
-            }
-        }
-        
-        currentPhase++;
-        setTimeout(nextPhase, phase.duration);
+
+        // Log the current classes on the container
+        console.log('🤖 Current classes on container:', this.mascotContainer.className);
     }
-    
-    // Start installation sequence
-    setTimeout(nextPhase, 500);
-    
-    function completeInstallation() {
+
+    resetMascotPosition() {
+        this.mascotContainer.classList.remove('positioned-left');
+        this.speechBubble.classList.remove('positioned-left', 'show');
+    }
+
+    // Method to manually trigger animation (for testing)
+    restart() {
+        console.log('🤖 Restarting mascot animation...');
+        
+        // Clear all timeouts
+        this.timeouts.forEach(timeout => clearTimeout(timeout));
+        this.timeouts = [];
+        
+        // Reset position and state
+        this.resetMascotPosition();
+        this.animationStarted = false;
+        this.clickCount = 0;
+        this.lastClickTime = 0;
+        
+        // Restart sequence
         setTimeout(() => {
-            installationSystem.classList.add('complete');
-            letters.forEach(letter => {
-                letter.classList.remove('installing');
-                letter.classList.add('installed');
-            });
-            
-            // Activate Space Command Center
-            document.body.classList.remove('installing');
-            document.body.classList.add('installation-complete');
-            
-            // Ensure games are visible after installation
-            ensureGamesVisible();
-            
-            // Create command center particles
-            createCommandCenterParticles();
-            
-            // Enable advanced physics after installation
-            setTimeout(enableAdvancedPhysics, 1000);
-        }, 1000);
+            this.init();
+        }, 500);
     }
-}
 
-function createSpaceParticles() {
-    const container = document.getElementById('spaceParticles');
-    for (let i = 0; i < 50; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'space-particle';
-        particle.style.left = Math.random() * 100 + '%';
-        particle.style.animationDelay = Math.random() * 8 + 's';
-        particle.style.animationDuration = (6 + Math.random() * 4) + 's';
-        container.appendChild(particle);
-    }
-}
-
-function createInstallationSparks() {
-    const container = document.getElementById('installationSparks');
-    const letters = document.querySelectorAll('.spring-letter-container');
-    
-    letters.forEach((letterContainer, index) => {
+    // Method to skip to final state (useful for development)
+    skipToEnd() {
+        this.timeouts.forEach(timeout => clearTimeout(timeout));
+        this.timeouts = [];
+        this.moveMascotToLeft();
         setTimeout(() => {
-            const rect = letterContainer.getBoundingClientRect();
-            for (let i = 0; i < 8; i++) {
-                const spark = document.createElement('div');
-                spark.className = 'installation-spark';
-                spark.style.left = (rect.left + rect.width / 2) + 'px';
-                spark.style.top = (rect.top + 100) + 'px';
-                spark.style.animationDelay = (i * 0.1) + 's';
-                container.appendChild(spark);
-                
-                setTimeout(() => spark.remove(), 1500);
-            }
-        }, index * 200);
-    });
-}
-
-function triggerLetterInstallations() {
-    const letters = document.querySelectorAll('.spring-letter');
-    letters.forEach((letter, index) => {
-        setTimeout(() => {
-            letter.style.setProperty('--letter-index', index);
-        }, index * 400);
-    });
-}
-
-function enableAdvancedPhysics() {
-    const letters = document.querySelectorAll('.spring-letter.installed');
-    
-    letters.forEach((letter, index) => {
-        // Enhanced collision detection
-        let isDragging = false;
-        let position = { x: 0, y: 0 };
-        let velocity = { x: 0, y: 0 };
-        let lastPosition = { x: 0, y: 0 };
-        
-        function updatePhysics() {
-            if (!isDragging) {
-                // Apply physics
-                const restoring = 0.08;
-                const damping = 0.92;
-                
-                velocity.x += (0 - position.x) * restoring;
-                velocity.y += (0 - position.y) * restoring;
-                velocity.x *= damping;
-                velocity.y *= damping;
-                
-                position.x += velocity.x;
-                position.y += velocity.y;
-                
-                // Check collisions with nearby letters
-                checkCollisions(letter, index, position);
-                
-                // Update visual position
-                updateLetterTransform(letter, position);
-                
-                // Continue physics if still moving
-                if (Math.abs(velocity.x) > 0.1 || Math.abs(velocity.y) > 0.1 || 
-                    Math.abs(position.x) > 0.1 || Math.abs(position.y) > 0.1) {
-                    requestAnimationFrame(updatePhysics);
-                }
-            }
-        }
-        
-        // Enhanced interaction handlers
-        letter.addEventListener('mousedown', (e) => {
-            isDragging = true;
-            lastPosition = { x: e.clientX, y: e.clientY };
-            document.addEventListener('mousemove', onDrag);
-            document.addEventListener('mouseup', onRelease);
-        });
-        
-        function onDrag(e) {
-            if (!isDragging) return;
-            const deltaX = e.clientX - lastPosition.x;
-            const deltaY = e.clientY - lastPosition.y;
-            
-            position.x += deltaX * 0.5;
-            position.y += deltaY * 0.5;
-            
-            updateLetterTransform(letter, position);
-            lastPosition = { x: e.clientX, y: e.clientY };
-        }
-        
-        function onRelease() {
-            isDragging = false;
-            document.removeEventListener('mousemove', onDrag);
-            document.removeEventListener('mouseup', onRelease);
-            updatePhysics();
-        }
-    });
-}
-
-function checkCollisions(currentLetter, currentIndex, position) {
-    const letters = document.querySelectorAll('.spring-letter.installed');
-    const containerRect = currentLetter.parentElement.getBoundingClientRect();
-    
-    letters.forEach((otherLetter, otherIndex) => {
-        if (otherIndex === currentIndex) return;
-        
-        const otherRect = otherLetter.parentElement.getBoundingClientRect();
-        const distance = Math.sqrt(
-            Math.pow(containerRect.left - otherRect.left, 2) + 
-            Math.pow(containerRect.top - otherRect.top, 2)
-        );
-        
-        // If collision detected, apply repulsion
-        if (distance < 120) {
-            const force = (120 - distance) * 0.002;
-            const angle = Math.atan2(
-                containerRect.top - otherRect.top,
-                containerRect.left - otherRect.left
-            );
-            
-            position.x += Math.cos(angle) * force;
-            position.y += Math.sin(angle) * force;
-        }
-    });
-}
-
-function updateLetterTransform(letter, position) {
-    const string = letter.parentElement.querySelector('.spring-string path');
-    const rotation = position.x * 0.1;
-    
-    letter.style.transform = `translateX(${position.x}px) translateY(${position.y}px) rotate(${rotation}deg)`;
-    
-    // Update string physics
-    if (string) {
-        const stretch = position.y * 0.4;
-        const sway = position.x * 0.3;
-        const points = [];
-        
-        for (let i = 0; i <= 8; i++) {
-            const t = i / 8;
-            const baseY = t * (240 + stretch);
-            const swayX = 4 + sway * (1 - t) + Math.sin(t * Math.PI * 2) * (stretch * 0.01);
-            points.push(`${i === 0 ? 'M' : 'L'}${swayX} ${baseY}`);
-        }
-        
-        string.setAttribute('d', points.join(' '));
-        
-        // Enhanced tension effects
-        const tension = Math.min(1, Math.sqrt(position.x * position.x + position.y * position.y) / 100);
-        const red = Math.floor(44 + tension * 100);
-        const green = Math.floor(62 + tension * 60);
-        const blue = Math.floor(80 + tension * 40);
-        string.setAttribute('stroke', `rgb(${red}, ${green}, ${blue})`);
-        
-        if (tension > 0.3) {
-            string.setAttribute('filter', `drop-shadow(0 0 ${tension * 12}px rgb(${red}, ${green}, ${blue}))`);
-        }
+            this.showSpeech("Umm Welcome ig", -1);
+        }, 2000);
     }
 }
 
-// ============================================
-// 🌌 SPACE COMMAND CENTER INTEGRATION
-// ============================================
+// Initialize mascot controller
+console.log('🤖 Creating MascotController instance...');
+const mascotController = new MascotAnimationController();
 
-function createCommandCenterParticles() {
-    const storyboardSection = document.querySelector('.storyboard-section');
-    if (!storyboardSection) return;
-    
-    // Create particle container
-    const particleContainer = document.createElement('div');
-    particleContainer.className = 'command-center-particles';
-    storyboardSection.appendChild(particleContainer);
-    
-    // Generate floating command particles
-    for (let i = 0; i < 30; i++) {
-        setTimeout(() => {
-            createCommandParticle(particleContainer);
-        }, i * 200);
-    }
-    
-    // Continue creating particles periodically
-    setInterval(() => {
-        if (particleContainer.children.length < 50) {
-            createCommandParticle(particleContainer);
-        }
-    }, 1000);
-}
-
-function createCommandParticle(container) {
-    const particle = document.createElement('div');
-    particle.className = 'command-particle';
-    particle.style.left = Math.random() * 100 + '%';
-    particle.style.animationDelay = Math.random() * 12 + 's';
-    particle.style.animationDuration = (8 + Math.random() * 8) + 's';
-    
-    // Random size variation
-    const size = 1 + Math.random() * 2;
-    particle.style.width = size + 'px';
-    particle.style.height = size + 'px';
-    
-    container.appendChild(particle);
-    
-    // Remove particle after animation
+// Start animation when page loads
+window.addEventListener('load', () => {
+    console.log('🤖 Window load event fired');
+    // Longer delay to ensure everything is loaded and stable
     setTimeout(() => {
-        if (particle.parentNode) {
-            particle.remove();
+        console.log('🤖 Starting initialization...');
+        mascotController.init();
+    }, 2000);
+});
+
+// Optional: Add controls for testing (remove in production)
+if (window.location.hash === '#dev') {
+    console.log('🤖 Developer mode activated');
+    window.mascotController = mascotController;
+    
+    // Add keyboard shortcuts for testing
+    document.addEventListener('keydown', (e) => {
+        if (e.ctrlKey || e.metaKey) {
+            switch(e.key) {
+                case 'r':
+                    e.preventDefault();
+                    mascotController.restart();
+                    break;
+                case 's':
+                    e.preventDefault();
+                    mascotController.skipToEnd();
+                    break;
+            }
         }
-    }, 16000);
+    });
 }
+
+
