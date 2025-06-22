@@ -3651,7 +3651,7 @@ html {
 /* Speech bubble positioning */
 .speech-bubble {
     position: fixed;
-    left: 50%;
+    left: 60%;
     top: 130px;
     transform: translateX(200px);
     transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
@@ -3826,4 +3826,358 @@ html {
 .hero-banner {
     position: relative;
     overflow: visible !important;
+}
+
+/* ============================================
+   🦾 CYBER FOOTER
+   ============================================ */
+
+.cyber-footer {
+    background: 
+        linear-gradient(180deg, 
+            rgba(5, 15, 25, 0.95) 0%,
+            rgba(2, 8, 15, 0.98) 50%,
+            rgba(0, 5, 10, 1) 100%);
+    
+    border-top: 2px solid rgba(0, 255, 255, 0.3);
+    position: relative;
+    margin-top: 4rem;
+    
+    /* Sci-fi scan lines */
+    background-image: 
+        repeating-linear-gradient(0deg,
+            transparent,
+            transparent 2px,
+            rgba(0, 255, 255, 0.03) 2px,
+            rgba(0, 255, 255, 0.03) 4px);
+    
+    /* Subtle glow */
+    box-shadow: 
+        0 -10px 40px rgba(0, 255, 255, 0.1),
+        inset 0 1px 0 rgba(0, 255, 255, 0.2);
+}
+
+.cyber-footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+        transparent 0%,
+        rgba(0, 255, 255, 0.8) 20%,
+        rgba(0, 162, 255, 1) 50%,
+        rgba(0, 255, 255, 0.8) 80%,
+        transparent 100%);
+    animation: footerScan 3s ease-in-out infinite;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3rem 2rem 2rem 2rem;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1.5fr;
+    gap: 3rem;
+    align-items: start;
+}
+
+.footer-section {
+    position: relative;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.footer-logo-img {
+    width: 40px;
+    height: 40px;
+    filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.6));
+    transition: all 0.3s ease;
+}
+
+.footer-logo:hover .footer-logo-img {
+    filter: drop-shadow(0 0 15px rgba(0, 255, 255, 0.8));
+    transform: scale(1.05);
+}
+
+.footer-brand {
+    font-family: 'Courier New', monospace;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #00ffff;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow: 
+        0 0 10px rgba(0, 255, 255, 0.6),
+        0 0 20px rgba(0, 255, 255, 0.3);
+}
+
+.footer-tagline {
+    color: rgba(255, 255, 255, 0.7);
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-top: 0.5rem;
+    letter-spacing: 0.5px;
+}
+
+.footer-title {
+    color: #00ffff;
+    font-family: 'Courier New', monospace;
+    font-size: 1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
+    position: relative;
+    text-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
+}
+
+.footer-title::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 30px;
+    height: 2px;
+    background: linear-gradient(90deg, #00ffff, transparent);
+    border-radius: 1px;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li {
+    margin-bottom: 0.5rem;
+}
+
+.footer-link {
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    display: inline-block;
+    position: relative;
+}
+
+.footer-link:hover {
+    color: #00ffff;
+    text-shadow: 0 0 8px rgba(0, 255, 255, 0.6);
+    transform: translateX(5px);
+}
+
+.footer-link::before {
+    content: '>';
+    position: absolute;
+    left: -15px;
+    opacity: 0;
+    transition: all 0.3s ease;
+    color: #00ffff;
+}
+
+.footer-link:hover::before {
+    opacity: 1;
+    left: -20px;
+}
+
+.footer-social {
+    display: flex;
+    gap: 1.2rem;
+}
+
+.social-link {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    position: relative;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+.social-icon {
+    width: 20px;
+    height: 20px;
+    transition: all 0.3s ease;
+}
+
+.social-link.discord {
+    background: linear-gradient(135deg, rgba(114, 137, 218, 0.1) 0%, rgba(114, 137, 218, 0.2) 100%);
+    border-color: rgba(114, 137, 218, 0.3);
+    box-shadow: 0 0 15px rgba(114, 137, 218, 0.2);
+}
+
+.social-link.discord .social-icon {
+    fill: #7289da;
+    filter: drop-shadow(0 0 5px rgba(114, 137, 218, 0.6));
+}
+
+.social-link.discord:hover {
+    background: linear-gradient(135deg, rgba(114, 137, 218, 0.2) 0%, rgba(114, 137, 218, 0.3) 100%);
+    border-color: rgba(114, 137, 218, 0.6);
+    box-shadow: 0 0 25px rgba(114, 137, 218, 0.4);
+}
+
+.social-link.github {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.2) 100%);
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+}
+
+.social-link.github .social-icon {
+    fill: #ffffff;
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.6));
+}
+
+.social-link.github:hover {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.3) 100%);
+    border-color: rgba(255, 255, 255, 0.6);
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.4);
+}
+
+.social-link.instagram {
+    background: linear-gradient(135deg, rgba(225, 48, 108, 0.1) 0%, rgba(255, 220, 128, 0.2) 100%);
+    border-color: rgba(225, 48, 108, 0.3);
+    box-shadow: 0 0 15px rgba(225, 48, 108, 0.2);
+}
+
+.social-link.instagram .social-icon {
+    fill: #e1306c;
+    filter: drop-shadow(0 0 5px rgba(225, 48, 108, 0.6));
+}
+
+.social-link.instagram:hover {
+    background: linear-gradient(135deg, rgba(225, 48, 108, 0.2) 0%, rgba(255, 220, 128, 0.3) 100%);
+    border-color: rgba(225, 48, 108, 0.6);
+    box-shadow: 0 0 25px rgba(225, 48, 108, 0.4);
+}
+
+.social-link.tiktok {
+    background: linear-gradient(135deg, rgba(255, 0, 80, 0.1) 0%, rgba(0, 0, 0, 0.2) 100%);
+    border-color: rgba(255, 0, 80, 0.3);
+    box-shadow: 0 0 15px rgba(255, 0, 80, 0.2);
+}
+
+.social-link.tiktok .social-icon {
+    fill: #ff0050;
+    filter: drop-shadow(0 0 5px rgba(255, 0, 80, 0.6));
+}
+
+.social-link.tiktok:hover {
+    background: linear-gradient(135deg, rgba(255, 0, 80, 0.2) 0%, rgba(0, 0, 0, 0.3) 100%);
+    border-color: rgba(255, 0, 80, 0.6);
+    box-shadow: 0 0 25px rgba(255, 0, 80, 0.4);
+}
+
+.system-status {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.status-item {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.status-indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    position: relative;
+}
+
+.status-indicator.online {
+    background: #00ff88;
+    box-shadow: 
+        0 0 10px rgba(0, 255, 136, 0.6),
+        0 0 20px rgba(0, 255, 136, 0.3);
+    animation: statusPulse 2s ease-in-out infinite;
+}
+
+.status-text {
+    color: rgba(255, 255, 255, 0.8);
+    font-family: 'Courier New', monospace;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(0, 255, 255, 0.1);
+    padding: 1.5rem 2rem;
+    margin-top: 2rem;
+}
+
+.footer-bottom-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.6);
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+}
+
+@keyframes statusPulse {
+    0%, 100% { 
+        transform: scale(1);
+        box-shadow: 
+            0 0 10px rgba(0, 255, 136, 0.6),
+            0 0 20px rgba(0, 255, 136, 0.3);
+    }
+    50% { 
+        transform: scale(1.1);
+        box-shadow: 
+            0 0 15px rgba(0, 255, 136, 0.8),
+            0 0 30px rgba(0, 255, 136, 0.4);
+    }
+}
+
+@keyframes footerScan {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+@media (max-width: 768px) {
+    .footer-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        padding: 2rem 1rem 1.5rem 1rem;
+        text-align: center;
+    }
+    
+    .footer-logo {
+        justify-content: center;
+    }
+    
+    .footer-social {
+        justify-content: center;
+    }
+    
+    .footer-bottom-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 0.5rem;
+    }
+    
+    .system-status {
+        align-items: center;
+    }
 }
