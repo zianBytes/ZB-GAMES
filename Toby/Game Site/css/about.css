@@ -1,60 +1,141 @@
 .about-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 2rem;
+    padding: 8rem 2rem 2rem;
     color: var(--text-color);
 }
 
 .about-hero {
     text-align: center;
     margin-bottom: 4rem;
-    padding: 4rem 0;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
-    border-radius: 20px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 4rem 2rem;
+    background: linear-gradient(135deg, 
+        rgba(0, 255, 255, 0.1) 0%, 
+        rgba(0, 162, 255, 0.05) 50%, 
+        rgba(0, 255, 255, 0.1) 100%);
+    position: relative;
+    overflow: hidden;
+    border: 2px solid rgba(0, 255, 255, 0.3);
+    
+    /* Futuristic shape */
+    clip-path: polygon(
+        20px 0%, 
+        100% 0%, 
+        100% calc(100% - 20px), 
+        calc(100% - 20px) 100%, 
+        0% 100%, 
+        0% 20px
+    );
+    
+    /* Cyberpunk glow */
+    box-shadow: 
+        0 0 30px rgba(0, 255, 255, 0.2),
+        inset 0 0 50px rgba(0, 255, 255, 0.1);
+}
+
+/* Scan line effect */
+.about-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(0, 255, 255, 0.1) 50%,
+        transparent 100%
+    );
+    animation: scanLine 3s ease-in-out infinite;
 }
 
 .about-hero h1 {
+    font-family: var(--font-display);
     font-size: 3.5rem;
-    margin-bottom: 1rem;
-    background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+    margin-bottom: 1.5rem;
+    background: linear-gradient(
+        45deg,
+        var(--primary-color) 0%,
+        #00ff88 25%,
+        var(--accent-color) 50%,
+        #00ff88 75%,
+        var(--primary-color) 100%
+    );
+    background-size: 200% auto;
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+    animation: gradientFlow 8s ease infinite;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    position: relative;
+    z-index: 1;
 }
 
 .about-hero .subtitle {
     font-size: 1.5rem;
-    color: var(--text-color);
+    color: #00ffff;
     opacity: 0.9;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-family: var(--font-display);
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+    position: relative;
+    z-index: 1;
 }
 
 .about-content {
     display: grid;
     gap: 3rem;
+    position: relative;
+    z-index: 2;
 }
 
 .about-section {
-    background: rgba(255, 255, 255, 0.05);
+    background: linear-gradient(135deg, 
+        rgba(0, 255, 255, 0.1) 0%, 
+        rgba(0, 162, 255, 0.05) 50%, 
+        rgba(0, 255, 255, 0.1) 100%);
     padding: 2rem;
-    border-radius: 15px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(0, 255, 255, 0.3);
+    position: relative;
+    overflow: hidden;
+    
+    /* Futuristic shape */
+    clip-path: polygon(
+        15px 0%, 
+        100% 0%, 
+        100% calc(100% - 15px), 
+        calc(100% - 15px) 100%, 
+        0% 100%, 
+        0% 15px
+    );
+    
+    /* Cyberpunk glow */
+    box-shadow: 
+        0 0 20px rgba(0, 255, 255, 0.15),
+        inset 0 0 30px rgba(0, 255, 255, 0.05);
+    
+    transition: all 0.3s ease;
 }
 
 .about-section:hover {
     transform: translateY(-5px);
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    border-color: rgba(0, 255, 255, 0.6);
+    box-shadow: 
+        0 0 30px rgba(0, 255, 255, 0.3),
+        inset 0 0 40px rgba(0, 255, 255, 0.1);
 }
 
 .about-section h2 {
-    color: var(--primary-color);
+    color: #00ffff;
     font-size: 2rem;
-    margin-bottom: 1rem;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+    margin-bottom: 1.5rem;
+    font-family: var(--font-display);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
 }
 
 .about-section p {
@@ -62,56 +143,72 @@
     line-height: 1.6;
     color: var(--text-color);
     opacity: 0.9;
+    font-family: var(--font-body);
 }
 
 .features-list {
     list-style: none;
     padding: 0;
-    margin: 1rem 0;
+    margin: 1.5rem 0;
 }
 
 .features-list li {
-    padding: 0.8rem 0;
+    padding: 1rem 0;
     font-size: 1.1rem;
     color: var(--text-color);
     display: flex;
     align-items: center;
     gap: 1rem;
+    border-bottom: 1px solid rgba(0, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.features-list li:last-child {
+    border-bottom: none;
 }
 
 .features-list li::before {
     content: "→";
-    color: var(--primary-color);
+    color: #00ffff;
     font-size: 1.2rem;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+    transition: all 0.3s ease;
+}
+
+.features-list li:hover {
+    color: #00ffff;
+    transform: translateX(10px);
+}
+
+.features-list li:hover::before {
+    transform: translateX(5px);
+    text-shadow: 0 0 15px rgba(0, 255, 255, 0.8);
+}
+
+@keyframes scanLine {
+    0% {
+        left: -100%;
+        opacity: 0;
+    }
+    50% {
+        opacity: 1;
+    }
+    100% {
+        left: 100%;
+        opacity: 0;
+    }
 }
 
 @media (max-width: 768px) {
-    .about-container {
-        padding: 1rem;
-    }
-
-    .about-hero {
-        padding: 2rem 0;
-        margin-bottom: 2rem;
-    }
-
     .about-hero h1 {
         font-size: 2.5rem;
     }
-
+    
     .about-hero .subtitle {
         font-size: 1.2rem;
     }
-
-    .about-section {
-        padding: 1.5rem;
-    }
-
+    
     .about-section h2 {
-        font-size: 1.5rem;
-    }
-
-    .features-list li {
-        font-size: 1rem;
+        font-size: 1.8rem;
     }
 } 
