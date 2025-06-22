@@ -222,7 +222,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (muteBtn) {
         muteBtn.addEventListener('click', () => {
             window.isMuted = !window.isMuted;
-            muteIcon.textContent = window.isMuted ? '🔇' : '🔊';
+            muteBtn.setAttribute('data-muted', window.isMuted);
         });
     }
 

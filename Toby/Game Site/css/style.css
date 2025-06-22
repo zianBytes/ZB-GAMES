@@ -40,6 +40,82 @@ body {
 }
 
 /* Top Navigation */
+@keyframes rgbBorder {
+    0% {
+        border-image: linear-gradient(
+            90deg,
+            #ff0000,
+            #ff7f00,
+            #ffff00,
+            #00ff00,
+            #0000ff,
+            #4b0082,
+            #8f00ff,
+            #ff0000
+        ) 1;
+        box-shadow: 
+            0 5px 20px rgba(255, 0, 0, 0.3),
+            0 0 40px rgba(255, 0, 0, 0.2);
+    }
+    14.28% {
+        border-image: linear-gradient(
+            90deg,
+            #8f00ff,
+            #ff0000,
+            #ff7f00,
+            #ffff00,
+            #00ff00,
+            #0000ff,
+            #4b0082,
+            #8f00ff
+        ) 1;
+        box-shadow: 
+            0 5px 20px rgba(255, 127, 0, 0.3),
+            0 0 40px rgba(255, 127, 0, 0.2);
+    }
+    28.57% {
+        box-shadow: 
+            0 5px 20px rgba(255, 255, 0, 0.3),
+            0 0 40px rgba(255, 255, 0, 0.2);
+    }
+    42.85% {
+        box-shadow: 
+            0 5px 20px rgba(0, 255, 0, 0.3),
+            0 0 40px rgba(0, 255, 0, 0.2);
+    }
+    57.14% {
+        box-shadow: 
+            0 5px 20px rgba(0, 0, 255, 0.3),
+            0 0 40px rgba(0, 0, 255, 0.2);
+    }
+    71.42% {
+        box-shadow: 
+            0 5px 20px rgba(75, 0, 130, 0.3),
+            0 0 40px rgba(75, 0, 130, 0.2);
+    }
+    85.71% {
+        box-shadow: 
+            0 5px 20px rgba(143, 0, 255, 0.3),
+            0 0 40px rgba(143, 0, 255, 0.2);
+    }
+    100% {
+        border-image: linear-gradient(
+            90deg,
+            #ff0000,
+            #ff7f00,
+            #ffff00,
+            #00ff00,
+            #0000ff,
+            #4b0082,
+            #8f00ff,
+            #ff0000
+        ) 1;
+        box-shadow: 
+            0 5px 20px rgba(255, 0, 0, 0.3),
+            0 0 40px rgba(255, 0, 0, 0.2);
+    }
+}
+
 .top-nav {
     background: rgba(0, 0, 0, 0.95);
     padding: 1rem 2rem;
@@ -50,24 +126,20 @@ body {
     top: 0;
     left: 0;
     right: 0;
-    z-index: 1000;
+    z-index: 100;
     border-bottom: 2px solid rgba(0, 255, 255, 0.3);
     backdrop-filter: blur(10px);
     
-    /* Cyber-style scan lines */
+    /* Simplified background */
     background-image: 
-        repeating-linear-gradient(0deg,
-            transparent,
-            transparent 2px,
-            rgba(0, 255, 255, 0.02) 2px,
-            rgba(0, 255, 255, 0.02) 4px);
+        linear-gradient(to bottom,
+            rgba(0, 0, 0, 0.95),
+            rgba(0, 0, 0, 0.9)
+        );
     
-    /* Enhanced glow */
-    box-shadow: 
-        0 5px 20px rgba(0, 255, 255, 0.15),
-        0 0 40px rgba(0, 162, 255, 0.1),
-        inset 0 1px 0 rgba(0, 255, 255, 0.2);
-        
+    /* Simplified glow */
+    box-shadow: 0 2px 10px rgba(0, 255, 255, 0.15);
+    
     /* Clipped corners */
     clip-path: polygon(
         0 0,
@@ -77,6 +149,12 @@ body {
         10px 100%,
         0 calc(100% - 10px)
     );
+}
+
+/* Remove the complex RGB animations */
+.top-nav::after,
+.top-nav::before {
+    display: none;
 }
 
 .nav-left {
@@ -823,7 +901,9 @@ body {
     position: relative;
     padding-bottom: 0;
     background: linear-gradient(135deg, var(--secondary-color), var(--background-color));
-    overflow: hidden;
+    overflow: visible;
+    z-index: 1;
+    padding-top: 80px; /* Add padding to account for fixed nav */
 }
 
 .hero-banner .explore-btn {
@@ -1933,26 +2013,74 @@ html {
     position: absolute;
     top: 1.5rem;
     right: 2.5rem;
-    background: rgba(0,0,0,0.5);
-    border: none;
-    border-radius: 50%;
-    color: #fff;
-    font-size: 2rem;
+    width: 48px;
+    height: 48px;
+    padding: 12px;
+    background: linear-gradient(45deg, #0a0a0a, #1a1a1a);
+    border: 2px solid rgba(0, 255, 255, 0.3);
     cursor: pointer;
-    box-shadow: 0 0 10px var(--glow-color);
-    z-index: 10;
-    transition: background 0.2s, box-shadow 0.2s;
+    transition: all 0.3s ease;
+    z-index: 101;
+    
+    /* Clean modern shape */
+    clip-path: polygon(
+        10px 0%, 
+        100% 0%, 
+        100% calc(100% - 10px), 
+        calc(100% - 10px) 100%, 
+        0% 100%, 
+        0% 10px
+    );
+    
+    /* Subtle glow effect */
+    box-shadow: 
+        0 0 15px rgba(0, 255, 255, 0.2),
+        inset 0 0 10px rgba(0, 255, 255, 0.1);
 }
-.mute-btn:hover, .mute-btn:focus {
-    background: rgba(0,0,0,0.8);
-    box-shadow: 0 0 20px var(--accent-color);
+
+.mute-btn:hover {
+    background: linear-gradient(45deg, #0f0f0f, #2a2a2a);
+    border-color: rgba(0, 255, 255, 0.6);
+    box-shadow: 
+        0 0 20px rgba(0, 255, 255, 0.4),
+        inset 0 0 15px rgba(0, 255, 255, 0.2);
+    transform: translateY(-2px);
 }
-#particle-container {
-    position: absolute;
-    left: 0; top: 0; width: 100%; height: 100%;
-    pointer-events: none;
-    z-index: 5;
+
+.mute-btn:active {
+    transform: translateY(0);
 }
+
+.sound-icon {
+    width: 100%;
+    height: 100%;
+    color: #00ffff;
+    filter: drop-shadow(0 0 5px rgba(0, 255, 255, 0.6));
+    transition: all 0.3s ease;
+}
+
+.sound-icon.sound-off {
+    display: none;
+}
+
+.mute-btn[data-muted="true"] .sound-on {
+    display: none;
+}
+
+.mute-btn[data-muted="true"] .sound-off {
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .mute-btn {
+        top: 1rem;
+        right: 1.5rem;
+        width: 40px;
+        height: 40px;
+        padding: 10px;
+    }
+}
+
 /* ============================================
    🚀 EPIC GAME ENGINE EXPLORE BUTTON
    ============================================ */
@@ -1963,7 +2091,7 @@ html {
     bottom: 60px;
     left: 50%;
     transform: translateX(-50%);
-    z-index: 50;
+    z-index: 10;
     
     /* Epic futuristic design */
     background: 
