@@ -3753,19 +3753,22 @@ html {
 /* Responsive speech bubble positioning */
 @media (max-width: 1400px) {
     .speech-bubble.positioned-left {
-        transform: translateX(200px);
+        transform: translateX(150px);
+        left: calc(1rem + 350px);
     }
 }
 
 @media (max-width: 1200px) {
     .speech-bubble.positioned-left {
-        transform: translateX(180px);
+        transform: translateX(100px);
+        left: calc(1rem + 400px);
     }
 }
 
 @media (max-width: 992px) {
     .speech-bubble.positioned-left {
-        transform: translateX(150px);
+        transform: translateX(50px);
+        left: calc(1rem + 450px);
     }
 }
 
@@ -3783,8 +3786,8 @@ html {
     }
     
     .speech-bubble.positioned-left {
-        transform: translateX(120px);
-        left: calc(1rem + 200px);
+        transform: translateX(0);
+        left: calc(1rem + 500px);
     }
 }
 
@@ -3802,7 +3805,8 @@ html {
     }
     
     .speech-bubble.positioned-left {
-        transform: translateX(100px);
+        transform: translateX(-50px);
+        left: calc(1rem + 550px);
     }
 }
 
