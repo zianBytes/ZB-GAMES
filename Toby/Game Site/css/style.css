@@ -3750,6 +3750,25 @@ html {
 }
 
 /* Mobile responsiveness */
+/* Responsive speech bubble positioning */
+@media (max-width: 1400px) {
+    .speech-bubble.positioned-left {
+        transform: translateX(200px);
+    }
+}
+
+@media (max-width: 1200px) {
+    .speech-bubble.positioned-left {
+        transform: translateX(180px);
+    }
+}
+
+@media (max-width: 992px) {
+    .speech-bubble.positioned-left {
+        transform: translateX(150px);
+    }
+}
+
 @media (max-width: 768px) {
     .speech-bubble {
         top: 40px;
@@ -3764,7 +3783,7 @@ html {
     }
     
     .speech-bubble.positioned-left {
-        transform: translateX(50px);
+        transform: translateX(120px);
         left: calc(1rem + 200px);
     }
 }
@@ -3783,7 +3802,7 @@ html {
     }
     
     .speech-bubble.positioned-left {
-        transform: translateX(200px);
+        transform: translateX(100px);
     }
 }
 
