@@ -41,20 +41,42 @@ body {
 
 /* Top Navigation */
 .top-nav {
-    background-color: var(--card-bg);
+    background: rgba(0, 0, 0, 0.95);
     padding: 1rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 1000;
-    border-bottom: 1px solid var(--card-border);
+    border-bottom: 2px solid rgba(0, 255, 255, 0.3);
     backdrop-filter: blur(10px);
-    background-color: rgba(30, 30, 30, 0.95);
+    
+    /* Cyber-style scan lines */
+    background-image: 
+        repeating-linear-gradient(0deg,
+            transparent,
+            transparent 2px,
+            rgba(0, 255, 255, 0.02) 2px,
+            rgba(0, 255, 255, 0.02) 4px);
+    
+    /* Enhanced glow */
+    box-shadow: 
+        0 5px 20px rgba(0, 255, 255, 0.15),
+        0 0 40px rgba(0, 162, 255, 0.1),
+        inset 0 1px 0 rgba(0, 255, 255, 0.2);
+        
+    /* Clipped corners */
+    clip-path: polygon(
+        0 0,
+        100% 0,
+        100% calc(100% - 10px),
+        calc(100% - 10px) 100%,
+        10px 100%,
+        0 calc(100% - 10px)
+    );
 }
 
 .nav-left {
@@ -165,31 +187,60 @@ body {
     text-decoration: none;
     font-weight: 500;
     font-size: 1rem;
-    padding: 0.5rem 0;
+    padding: 0.8rem 1.2rem;
     position: relative;
     transition: all 0.3s ease;
     font-family: var(--font-display);
     letter-spacing: 1px;
+    background: linear-gradient(135deg, 
+        rgba(0, 255, 255, 0.1) 0%, 
+        rgba(0, 162, 255, 0.05) 50%, 
+        rgba(0, 255, 255, 0.1) 100%);
+    border: 1px solid transparent;
+    clip-path: polygon(
+        10px 0%, 
+        100% 0%, 
+        calc(100% - 10px) 100%, 
+        0% 100%
+    );
 }
 
-.nav-link::after {
+.nav-link::before {
     content: '';
     position: absolute;
-    bottom: 0;
+    top: 0;
     left: 0;
-    width: 0;
-    height: 2px;
-    background-color: var(--primary-color);
-    transition: width 0.3s ease;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg,
+        rgba(0, 255, 255, 0.2) 0%,
+        rgba(0, 162, 255, 0.1) 50%,
+        rgba(0, 255, 255, 0.2) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 .nav-link:hover {
-    color: var(--primary-color);
+    color: #00ffff;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+    border-color: rgba(0, 255, 255, 0.3);
     transform: translateY(-2px);
+    box-shadow: 
+        0 0 20px rgba(0, 255, 255, 0.2),
+        inset 0 0 20px rgba(0, 255, 255, 0.1);
 }
 
-.nav-link:hover::after {
-    width: 100%;
+.nav-link:hover::before {
+    opacity: 1;
+}
+
+.nav-link.active {
+    color: #00ffff;
+    border-color: rgba(0, 255, 255, 0.4);
+    box-shadow: 
+        0 0 30px rgba(0, 255, 255, 0.3),
+        inset 0 0 30px rgba(0, 255, 255, 0.15);
+    text-shadow: 0 0 15px rgba(0, 255, 255, 0.7);
 }
 
 .logo-dropdown {
