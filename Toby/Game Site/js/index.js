@@ -198,7 +198,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // const floatingLetters = document.querySelectorAll('.floating-letter'); // Commented out - no letters
     const particleContainer = document.getElementById('particle-container');
     const muteBtn = document.getElementById('muteBtn');
-    const muteIcon = document.getElementById('muteIcon');
     
     // Make these global for installation sequence
     window.isMuted = false;
@@ -208,9 +207,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // };
 
     // Load sounds
-    const bounceSound = new Audio('assets/sounds/boing.mp3');
+    const bounceSound = new Audio('game/toby-meowstronaut/assets/buttonPress.mp3');
     bounceSound.volume = 0.5;
-    const spaceBlip = new Audio('assets/sounds/space-blip.mp3');
+    const spaceBlip = new Audio('game/toby-meowstronaut/assets/spaceCraft.mp3');
     spaceBlip.volume = 0.5;
 
     function playSound(sound) {
@@ -219,10 +218,12 @@ document.addEventListener('DOMContentLoaded', function() {
             sound.play();
         }
     }
+
     if (muteBtn) {
+        muteBtn.setAttribute('data-muted', 'false'); // Initialize mute state
         muteBtn.addEventListener('click', () => {
             window.isMuted = !window.isMuted;
-            muteBtn.setAttribute('data-muted', window.isMuted);
+            muteBtn.setAttribute('data-muted', window.isMuted.toString());
         });
     }
 
