@@ -3696,13 +3696,15 @@ html {
 
 @media (max-width: 1600px) {
     .speech-bubble.positioned-left {
-        transform: translateX(200px);
+        transform: translateX(250px);
+        left: calc(1rem + 300px);
     }
 }
 
 @media (max-width: 1400px) {
     .speech-bubble.positioned-left {
-        transform: translateX(150px);
+        transform: translateX(250px);
+        left: calc(1rem + 250px);
     }
 }
 
