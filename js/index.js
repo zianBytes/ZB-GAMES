@@ -528,7 +528,11 @@ class MascotAnimationController {
             "DO NOT TOUCH ME",
             "What is wrong with you?",
             "Ik I'm hot but damn",
-            "Sybau"
+            "Sybau",
+            "I'm not a cat, stop touching me",
+            "BRO OMGGG",
+            "play the game instead",
+            "Please choose peace!!"
         ];
         this.setupMascotInteraction();
     }
@@ -545,7 +549,7 @@ class MascotAnimationController {
         // Reset click sequence if it's been more than 5 seconds since last click
         if (currentTime - this.lastClickTime > 5000) {
             this.clickCount = 0;
-            this.showSpeechWithDelete("I'm glad you chose peace", -1);
+            this.showSpeechWithDelete("DPMO!!", -1);
         } else {
             // Cycle through click messages
             const messageIndex = this.clickCount % this.clickMessages.length;
