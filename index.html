@@ -26,7 +26,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Rubik+Mono+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/auth.css">
-    <link rel="stylesheet" href="css/leaderboard.css">
+
     <script>
         // Dynamic favicon animation
         function updateFavicon() {
@@ -129,6 +129,15 @@
         </div>
         
         <button class="explore-btn" id="exploreBtn" data-sound="space-blip">Explore</button>
+        
+        <!-- Dynamic Game Screen -->
+        <div id="gameScreen" class="game-screen">
+            <div class="screen-content">
+                <img id="gameThumbnail" class="game-thumbnail" src="assets/images/finaltoby.png" alt="Game Thumbnail">
+                <div id="gameStatus" class="game-status">Now available</div>
+            </div>
+        </div>
+        
         <button class="mute-btn" id="muteBtn" aria-label="Mute/Unmute sound">
             <svg class="sound-icon sound-on" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M14.016 3.234C14.016 2.554 13.462 2 12.782 2c-.379 0-.74.166-.985.456L6.735 8.344H3.992C3.444 8.344 3 8.788 3 9.336v5.328c0 .548.444.992.992.992h2.743l5.062 5.888c.245.29.606.456.985.456.68 0 1.234-.554 1.234-1.234V3.234z"/>
@@ -279,9 +288,7 @@
     </footer>
 
     <script src="js/auth.js"></script>
-    <script src="js/leaderboard.js"></script>
     <script src="js/analytics.js"></script>
-    <script src="js/game.js"></script>
     <script src="js/index.js"></script>
 </body>
 </html>

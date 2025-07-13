@@ -4490,4 +4490,231 @@ html {
     0%, 100% { width: 75%; opacity: 1; }
     50% { width: 85%; opacity: 0.8; }
 }
+
+/* ============================================
+   🎮 DYNAMIC GAME SCREEN - MATCHES STORYBOARD CARDS
+   ============================================ */
+
+.game-screen {
+    position: fixed;
+    right: -520px; /* Start completely off-screen */
+    top: 55%;
+    transform: translateY(-50%);
+    width: 480px;
+    height: 300px;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 15;
+    background: 
+        linear-gradient(135deg, 
+            rgba(10, 20, 40, 0.95) 0%,
+            rgba(15, 25, 45, 0.98) 100%);
+    
+    border: 3px solid rgba(0, 255, 255, 0.8);
+    border-radius: 0;
+    padding: 0;
+    overflow: visible;
+    /* Futuristic clipped corners like storyboard cards */
+    clip-path: polygon(
+        20px 0%, 
+        100% 0%, 
+        calc(100% - 20px) 100%, 
+        0% 100%
+    );
+    /* ULTRA INTENSE Multiple holographic shadow layers - same as storyboard */
+    box-shadow: 
+        0 0 60px rgba(0, 255, 255, 0.9),
+        0 0 120px rgba(0, 162, 255, 0.7),
+        0 0 180px rgba(0, 255, 255, 0.5),
+        0 0 240px rgba(52, 152, 219, 0.4),
+        0 0 300px rgba(0, 255, 255, 0.3),
+        0 0 400px rgba(0, 162, 255, 0.2),
+        0 20px 40px rgba(0, 0, 0, 0.4),
+        inset 0 2px 0 rgba(0, 255, 255, 0.6),
+        inset 0 -2px 0 rgba(0, 255, 255, 0.4),
+        inset 0 0 50px rgba(0, 255, 255, 0.2);
+    /* Smooth slide-in transition matching mascot movement */
+    transition: opacity 0.5s ease, visibility 0.5s ease, right 0.3s ease;
+}
+
+.game-screen.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Enhanced holographic scan lines overlay with extra intensity */
+.game-screen::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: -105%;
+    width: 110%;
+    height: calc(100% + 10px);
+    background: 
+        linear-gradient(90deg,
+            transparent 0%,
+            rgba(0, 255, 255, 0.2) 15%,
+            rgba(0, 255, 255, 0.5) 35%,
+            rgba(0, 255, 255, 0.8) 50%,
+            rgba(0, 255, 255, 0.5) 65%,
+            rgba(0, 255, 255, 0.2) 85%,
+            transparent 100%);
+    animation: holographicScanLine 2.5s ease-in-out infinite;
+    z-index: 2;
+    pointer-events: none;
+    
+    /* Add extra glow to scan line */
+    box-shadow: 
+        0 0 30px rgba(0, 255, 255, 0.6),
+        0 0 60px rgba(0, 255, 255, 0.3);
+}
+
+/* ULTRA PROMINENT floating particle halo around game screen */
+.game-screen::after {
+    content: '';
+    position: absolute;
+    top: -40px;
+    left: -40px;
+    right: -40px;
+    bottom: -40px;
+    background: 
+        radial-gradient(circle at 20% 20%, rgba(0, 255, 255, 0.6) 3px, transparent 3px),
+        radial-gradient(circle at 80% 80%, rgba(52, 152, 219, 0.6) 3px, transparent 3px),
+        radial-gradient(circle at 40% 60%, rgba(0, 255, 255, 0.4) 2px, transparent 2px),
+        radial-gradient(circle at 60% 40%, rgba(0, 162, 255, 0.4) 2px, transparent 2px),
+        radial-gradient(circle at 90% 10%, rgba(0, 255, 255, 0.7) 2.5px, transparent 2.5px),
+        radial-gradient(circle at 10% 90%, rgba(52, 152, 219, 0.7) 2.5px, transparent 2.5px),
+        radial-gradient(circle at 30% 80%, rgba(0, 255, 255, 0.5) 1.5px, transparent 1.5px),
+        radial-gradient(circle at 70% 20%, rgba(0, 162, 255, 0.5) 1.5px, transparent 1.5px);
+    background-size: 50px 50px, 70px 70px, 40px 40px, 60px 60px, 45px 45px, 55px 55px, 35px 35px, 65px 65px;
+    animation: particleGlow 3s ease-in-out infinite, particleFloat 6s linear infinite, particlePulse 2s ease-in-out infinite;
+    z-index: -1;
+    pointer-events: none;
+    opacity: 0.9;
+    border-radius: 50px;
+    
+    /* Add a subtle outer glow */
+    box-shadow: 
+        0 0 50px rgba(0, 255, 255, 0.3),
+        0 0 100px rgba(0, 162, 255, 0.2);
+}
+
+.screen-content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Game thumbnail enhancements with quality optimization - same as storyboard */
+.game-screen .game-thumbnail {
+    position: relative;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    border-radius: 0;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    
+    /* Quality preservation for container */
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    will-change: transform, box-shadow;
+    
+    /* Clipped corners for thumbnail */
+    clip-path: polygon(
+        15px 0%, 
+        100% 0%, 
+        calc(100% - 15px) calc(100% - 15px), 
+        0% 100%
+    );
+    
+    /* Enhanced holographic border with stronger glow */
+    border: 2px solid rgba(0, 255, 255, 0.7);
+    box-shadow: 
+        0 0 30px rgba(0, 255, 255, 0.6),
+        0 0 60px rgba(0, 162, 255, 0.3),
+        inset 0 0 30px rgba(0, 162, 255, 0.3);
+        
+    /* Smooth container transitions */
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    margin-bottom: 15px;
+}
+
+/* Enhanced thumbnail hover with MEGA glow */
+.game-screen .game-thumbnail:hover {
+    border-color: rgba(0, 255, 255, 1);
+    box-shadow: 
+        0 0 50px rgba(0, 255, 255, 0.9),
+        0 0 100px rgba(0, 162, 255, 0.6),
+        0 0 150px rgba(0, 255, 255, 0.4),
+        inset 0 0 50px rgba(0, 162, 255, 0.5);
+}
+
+/* Enhanced thumbnail image with quality preservation */
+.game-screen .game-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    
+    /* Quality preservation during animations */
+    image-rendering: high-quality;
+    image-rendering: -webkit-optimize-contrast;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+    will-change: transform, filter;
+    
+    /* Smoother transitions with specific properties */
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                filter 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    
+    /* Base filter state */
+    filter: brightness(0.8) contrast(1.2) saturate(1.3);
+    
+    /* Force GPU acceleration for smooth scaling */
+    transform: translateZ(0);
+}
+
+.game-screen .game-thumbnail:hover img {
+    /* Use 3D transform for better GPU handling */
+    transform: translateZ(0) scale3d(1.05, 1.05, 1);
+    filter: brightness(1.1) contrast(1.4) saturate(1.5);
+}
+
+/* Game status with storyboard card styling */
+.game-status {
+    font-family: 'Courier New', monospace;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #00ffff;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    
+    text-shadow: 
+        0 0 10px #00ffff,
+        0 0 20px #00ffff,
+        0 0 30px #00ffff;
+    
+    animation: titleGlow 2s ease-in-out infinite alternate;
+    
+    /* Terminal cursor effect */
+    position: relative;
+}
+
+.game-status::after {
+    content: '_';
+    color: #00ffff;
+    animation: terminalCursor 1s infinite;
+    margin-left: 5px;
+}
+
+/* ============================================
+   🎵 SOUND CONTROL BUTTON
+   ============================================ */
   

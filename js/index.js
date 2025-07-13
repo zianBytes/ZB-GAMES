@@ -103,6 +103,103 @@ document.addEventListener('DOMContentLoaded', function() {
     // Force games section to be visible
     ensureGamesVisible();
 
+    // Dynamic Game Screen functionality
+    const gameScreen = document.getElementById('gameScreen');
+    const gameThumbnail = document.getElementById('gameThumbnail');
+    const gameStatus = document.getElementById('gameStatus');
+    const mascot = document.getElementById('mascot');
+    
+    // Game screen data
+    const gameData = [
+        {
+            thumbnail: 'assets/images/finaltoby.png',
+            status: 'Now available'
+        },
+        {
+            thumbnail: 'assets/images/ts-pmo-thumbnail.png',
+            status: 'Coming soon'
+        }
+    ];
+    
+    let currentGameIndex = 0;
+    let screenInterval;
+    
+    // Function to update game screen content
+    function updateGameScreen() {
+        const game = gameData[currentGameIndex];
+        gameThumbnail.src = game.thumbnail;
+        gameStatus.textContent = game.status;
+        
+        // Add fade effect
+        gameThumbnail.style.opacity = '0';
+        gameStatus.style.opacity = '0';
+        
+        setTimeout(() => {
+            gameThumbnail.style.opacity = '1';
+            gameStatus.style.opacity = '1';
+        }, 200);
+        
+        currentGameIndex = (currentGameIndex + 1) % gameData.length;
+    }
+    
+    // Function to show game screen
+    function showGameScreen() {
+        if (gameScreen && !gameScreen.classList.contains('active')) {
+            gameScreen.classList.add('active');
+            
+            // Start the picture loop
+            if (!screenInterval) {
+                screenInterval = setInterval(updateGameScreen, 5000);
+            }
+        }
+    }
+    
+    // Function to hide game screen
+    function hideGameScreen() {
+        if (gameScreen && gameScreen.classList.contains('active')) {
+            gameScreen.classList.remove('active');
+            
+            // Stop the picture loop
+            if (screenInterval) {
+                clearInterval(screenInterval);
+                screenInterval = null;
+            }
+        }
+    }
+    
+    // Monitor mascot position for screen trigger
+    function checkMascotPosition() {
+        if (mascot && gameScreen) {
+            const mascotRect = mascot.getBoundingClientRect();
+            const windowWidth = window.innerWidth;
+            
+            // Calculate mascot's horizontal position as a percentage
+            const mascotPosition = (mascotRect.left + mascotRect.width / 2) / windowWidth;
+            
+            // Show screen when mascot is on the left side (first 40% of screen)
+            if (mascotPosition < 0.4) {
+                // Keep screen fixed on the right side of the screen, centered vertically
+                gameScreen.style.right = '40px';
+                gameScreen.style.top = '55%';
+                gameScreen.style.transform = 'translateY(-50%)';
+                showGameScreen();
+            } else {
+                hideGameScreen();
+            }
+        }
+    }
+    
+    // Add smooth transitions to thumbnails and status
+    if (gameThumbnail) {
+        gameThumbnail.style.transition = 'opacity 0.3s ease';
+    }
+    if (gameStatus) {
+        gameStatus.style.transition = 'opacity 0.3s ease';
+    }
+    
+    // Check mascot position periodically
+    setInterval(checkMascotPosition, 100);
+
     // Online modal
     const modal = document.getElementById("onlineModal");
     const onlineBtn = document.getElementById("onlineBtn");
@@ -603,9 +700,71 @@ class MascotAnimationController {
     }
 }
 
+// Global startGame function
+function startGame() {
+    console.log('🎮 Starting Toby The Meowstronaut...');
+    
+    // Hide the main content
+    const mainContent = document.getElementById('gamesSection');
+    if (mainContent) {
+        mainContent.style.display = 'none';
+    }
+    
+    // Show the game section with the nice container
+    const gameSection = document.getElementById('gameSection');
+    if (gameSection) {
+        gameSection.style.display = 'block';
+    }
+    
+    // Load the game in the container
+    const gameContainer = document.getElementById('gameContainer');
+    if (gameContainer) {
+        // Create iframe for the game
+        const iframe = document.createElement('iframe');
+        iframe.src = 'game/toby-meowstronaut/index.html';
+        iframe.style.cssText = `
+            width: 100%;
+            height: 100%;
+            border: none;
+            background: #000;
+        `;
+        gameContainer.appendChild(iframe);
+    }
+}
+
+// Global returnToHome function
+function returnToHome() {
+    console.log('🏠 Returning to home...');
+    
+    // Show the main content
+    const mainContent = document.getElementById('gamesSection');
+    if (mainContent) {
+        mainContent.style.display = 'block';
+    }
+    
+    // Hide the game section
+    const gameSection = document.getElementById('gameSection');
+    if (gameSection) {
+        gameSection.style.display = 'none';
+    }
+    
+    // Clear the game container
+    const gameContainer = document.getElementById('gameContainer');
+    if (gameContainer) {
+        gameContainer.innerHTML = '';
+    }
+}
+
 // Initialize mascot controller
 console.log('🤖 Creating MascotController instance...');
 const mascotController = new MascotAnimationController();
+
+// Listen for messages from the game iframe
+window.addEventListener('message', (event) => {
+    if (event.data.type === 'RETURN_TO_HOME') {
+        returnToHome();
+    }
+});
 
 // Start animation when page loads
 window.addEventListener('load', () => {
