@@ -103,54 +103,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Force games section to be visible
     ensureGamesVisible();
 
-    // Morich's mood monitor
-    const morichMessages = [
-        "Analyzing visitor vibes…",
-        "🧍 Detected: Lurker Energy",
-        "Judgment: 6.5/10",
-        "😤 Your outfit? Mid.",
-        "🤖 Suspected bot... but ok.",
-        "🎮 No games? No respect.",
-        "📡 Signal detected from Earth... ew.",
-        "😬 You blinked. I saw that."
-      ];
-      
-      let msgIndex = 0;
-      const monitorElement = document.getElementById("monitorMessage");
-      
-      function rotateMorichMessages() {
-        if (!monitorElement) return;
-        monitorElement.textContent = morichMessages[msgIndex];
-        monitorElement.classList.remove("textFadeIn");
-        void monitorElement.offsetWidth; // Reset animation
-        monitorElement.classList.add("textFadeIn");
-        msgIndex = (msgIndex + 1) % morichMessages.length;
-      }
-      
-      setInterval(rotateMorichMessages, 4000); // Change message every 4s
-      
-    
-    // Start cinematic installation sequence
-    // startCinematicInstallation(); // Commented out - no longer needed without letters
-
-    // Logo dropdown functionality
-    const logoButton = document.querySelector('.logo-button');
-    const logoDropdown = document.querySelector('.logo-dropdown');
-
-    if (logoButton && logoDropdown) {
-        logoButton.addEventListener('click', (e) => {
-            e.stopPropagation();
-            logoDropdown.classList.toggle('active');
-        });
-
-        // Close dropdown when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!logoButton.contains(e.target) && !logoDropdown.contains(e.target)) {
-                logoDropdown.classList.remove('active');
-            }
-        });
-    }
-
     // Online modal
     const modal = document.getElementById("onlineModal");
     const onlineBtn = document.getElementById("onlineBtn");
@@ -686,49 +638,5 @@ if (window.location.hash === '#dev') {
         }
     });
 }
-
-// Add to your existing JavaScript
-const moodMessages = [
-    "Ugh, another visitor? *rolls eyes dramatically*",
-    "I SUPPOSE I can grace you with my presence... 💅",
-    "Don't touch anything. I just organized my cosmic collection!",
-    "*sips celestial tea* Your aesthetic... is a choice.",
-    "Yes, I'm fabulous. No autographs please! ✨",
-    "My therapist says I need to be nicer... but LOL no.",
-    "You're still here? The audacity! 💫",
-    "I'm not grumpy, I'm selectively enthusiastic.",
-    "*checks space nails* Did you book an appointment?",
-    "This better be important, I was in the middle of my beauty nap!",
-    "Oh great, another human trying to understand my complexity. 🙄",
-    "Yes, I'm a diva. No, I won't apologize.",
-    "*adjusts cosmic crown* I don't do basic interactions.",
-    "My mood? Somewhere between 'fabulous' and 'don't test me'",
-    "I'm not mean, I'm just too glamorous for basic emotions."
-];
-
-function updateMoodMessage() {
-    const messageElement = document.querySelector('.monitor-message');
-    if (!messageElement) return;
-
-    let currentIndex = 0;
-    const characters = moodMessages[Math.floor(Math.random() * moodMessages.length)];
-    messageElement.textContent = '';
-
-    function typeCharacter() {
-        if (currentIndex < characters.length) {
-            messageElement.textContent += characters[currentIndex];
-            currentIndex++;
-            setTimeout(typeCharacter, Math.random() * 50 + 30);
-        }
-    }
-
-    typeCharacter();
-}
-
-// Update message every 8 seconds
-setInterval(updateMoodMessage, 8000);
-
-// Initial message after 5 seconds (matching CSS animation)
-setTimeout(updateMoodMessage, 5000);
 
 
