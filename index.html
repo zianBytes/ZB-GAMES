@@ -25,7 +25,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rubik+Mono+One&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/auth.css">
+
+    
+    <!-- Preload game assets for better performance -->
+    <link rel="preload" href="game/toby-meowstronaut/index.js" as="script">
+    <link rel="preload" href="game/toby-meowstronaut/index.wasm" as="fetch" crossorigin="anonymous">
+    <link rel="preload" href="game/toby-meowstronaut/index.data" as="fetch" crossorigin="anonymous">
 
     <script>
         // Dynamic favicon animation
@@ -70,32 +75,7 @@
     </script>
 </head>
 <body>
-    <div id="authContainer" class="auth-container">
-        <div class="auth-box">
-            <h2 class="auth-title">WECOME TO ZB GAMES</h2>
-            <form id="loginForm" class="auth-form">
-                <input type="text" id="loginUsername" class="auth-input" placeholder="Username" required>
-                <input type="password" id="loginPassword" class="auth-input" placeholder="Password" required>
-                <button type="submit" class="auth-button">Login</button>
-            </form>
-            <div class="auth-links">
-                <a href="#" class="auth-link" id="showSignup">Create Account</a>
-                <a href="#" class="auth-link" id="forgotPassword">Forgot Password?</a>
-            </div>
-            <button id="guestButton" class="auth-button guest-button">Continue as Guest</button>
-        </div>
 
-        <div id="signupForm" class="auth-form" style="display: none;">
-            <h2 class="auth-title">Create Your Account</h2>
-            <input type="text" id="signupUsername" class="auth-input" placeholder="Choose a username" required>
-            <input type="password" id="signupPassword" class="auth-input" placeholder="Choose a password" required>
-            <input type="password" id="confirmPassword" class="auth-input" placeholder="Confirm password" required>
-            <button type="submit" class="auth-button">Sign Up</button>
-            <div class="auth-links">
-                <a href="#" class="auth-link" id="showLogin">Back to Login</a>
-            </div>
-        </div>
-    </div>
 
     <nav class="top-nav">
         <div class="nav-left">
@@ -178,7 +158,7 @@
                         </div>
                         <div class="game-overlay">
                             <h3>Toby The Meowstronaut</h3>
-                            <button type="button" class="play-button" onclick="startGame();">Play</button>
+                            <button type="button" class="play-button" data-game-id="toby-meowstronaut" onclick="if(window.gameManager) { window.gameManager.startGame('toby-meowstronaut', 'Toby The Meowstronaut'); } else { console.log('GameManager not ready'); }">Play</button>
                         </div>
                     </div>
                     <div class="timeline-content story">
@@ -211,7 +191,7 @@
         <div class="game-frame-container">
             <div class="game-header">
                 <h2 class="game-title">Toby The Meowstronaut</h2>
-                <button class="back-button" onclick="returnToHome()">Back to Home</button>
+                <button class="back-button">Back to Home</button>
             </div>
             <div class="game-frame-wrapper">
                 <div id="gameContainer"></div>
@@ -287,8 +267,7 @@
         </div>
     </footer>
 
-    <script src="js/auth.js"></script>
-    <script src="js/analytics.js"></script>
-    <script src="js/index.js"></script>
+            <script src="js/game.js"></script>
+        <script src="js/index.js"></script>
 </body>
 </html>

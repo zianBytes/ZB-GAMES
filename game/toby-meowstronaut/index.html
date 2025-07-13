@@ -26,37 +26,6 @@
       <textarea class="emscripten" id="output" rows="8"></textarea>
     </div>
 
-    <!-- Leaderboard Overlay -->
-    <div id="leaderboard-overlay" class="leaderboard-overlay" style="display: none;">
-        <div class="leaderboard-modal">
-            <div class="leaderboard-header">
-                <h2>Leaderboard</h2>
-                <button id="close-leaderboard" class="close-btn">&times;</button>
-            </div>
-            <div id="leaderboard-content" class="leaderboard-content">
-                <div class="loading">Loading leaderboard...</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Game Over Modal -->
-    <div id="game-over-modal" class="game-over-modal" style="display: none;">
-        <div class="game-over-content">
-            <h2>Game Over!</h2>
-            <div id="final-score"></div>
-            <div class="score-input">
-                <label for="player-name">Enter your name:</label>
-                <input type="text" id="player-name" maxlength="20" placeholder="Your name">
-                <button id="save-score-btn">Save Score</button>
-            </div>
-            <div class="game-over-buttons">
-                <button id="play-again-btn">Play Again</button>
-                <button id="view-leaderboard-btn">View Leaderboard</button>
-                <button id="back-to-menu-btn">Back to Menu</button>
-            </div>
-        </div>
-    </div>
-
     <script type='text/javascript'>
       var statusElement = document.getElementById('status');
       var progressElement = document.getElementById('progress');

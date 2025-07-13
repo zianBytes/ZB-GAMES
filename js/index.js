@@ -95,8 +95,8 @@ function ensureGamesVisible() {
 // 🖼️ Back to reliable image thumbnails!
 // ============================================
 
-// Initialize when DOM is loaded
-document.addEventListener('DOMContentLoaded', function() {
+// Initialize when DOM is loaded - Optimized to avoid conflicts
+function initializeIndexJS() {
     console.log('=== DOM Loaded ===');
     checkElements();
     
@@ -217,6 +217,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Modal click handler - only for modal background
     window.addEventListener('click', function(event) {
         if (event.target == modal) {
             modal.style.display = "none";
@@ -474,7 +475,10 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     `;
     document.head.appendChild(style);
-});
+}
+
+// Initialize when DOM is loaded - Optimized to avoid conflicts
+document.addEventListener('DOMContentLoaded', initializeIndexJS);
 
 // ============================================
 // 🎬 SIMPLE CLEANUP SYSTEM
@@ -704,60 +708,10 @@ class MascotAnimationController {
     }
 }
 
-// Global startGame function
-function startGame() {
-    console.log('🎮 Starting Toby The Meowstronaut...');
-    
-    // Hide the main content
-    const mainContent = document.getElementById('gamesSection');
-    if (mainContent) {
-        mainContent.style.display = 'none';
-    }
-    
-    // Show the game section with the nice container
-    const gameSection = document.getElementById('gameSection');
-    if (gameSection) {
-        gameSection.style.display = 'block';
-    }
-    
-    // Load the game in the container
-    const gameContainer = document.getElementById('gameContainer');
-    if (gameContainer) {
-        // Create iframe for the game
-        const iframe = document.createElement('iframe');
-        iframe.src = 'game/toby-meowstronaut/index.html';
-        iframe.style.cssText = `
-            width: 100%;
-            height: 100%;
-            border: none;
-            background: #000;
-        `;
-        gameContainer.appendChild(iframe);
-    }
-}
+// Initialize when DOM is loaded - Optimized to avoid conflicts
+document.addEventListener('DOMContentLoaded', initializeIndexJS);
 
-// Global returnToHome function
-function returnToHome() {
-    console.log('🏠 Returning to home...');
-    
-    // Show the main content
-    const mainContent = document.getElementById('gamesSection');
-    if (mainContent) {
-        mainContent.style.display = 'block';
-    }
-    
-    // Hide the game section
-    const gameSection = document.getElementById('gameSection');
-    if (gameSection) {
-        gameSection.style.display = 'none';
-    }
-    
-    // Clear the game container
-    const gameContainer = document.getElementById('gameContainer');
-    if (gameContainer) {
-        gameContainer.innerHTML = '';
-    }
-}
+// Game loading is now handled by GameManager in game.js
 
 // Initialize mascot controller
 console.log('🤖 Creating MascotController instance...');
@@ -766,7 +720,10 @@ const mascotController = new MascotAnimationController();
 // Listen for messages from the game iframe
 window.addEventListener('message', (event) => {
     if (event.data.type === 'RETURN_TO_HOME') {
-        returnToHome();
+        // Game navigation is now handled by GameManager
+        if (window.gameManager) {
+            window.gameManager.stopGame();
+        }
     }
 });
 
